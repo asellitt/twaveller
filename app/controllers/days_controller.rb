@@ -1,10 +1,11 @@
 class DaysController < ApplicationController
   before_action :set_day, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip
 
   # GET /days
   # GET /days.json
   def index
-    @days = Day.all
+    @days = @trip.days.all
   end
 
   # GET /days/1
@@ -24,11 +25,11 @@ class DaysController < ApplicationController
   # POST /days
   # POST /days.json
   def create
-    @day = Day.new(day_params)
+    @day = @trip.days.new(day_params)
 
     respond_to do |format|
       if @day.save
-        format.html { redirect_to @day, notice: 'Day was successfully created.' }
+        format.html { redirect_to [@trip, @day], notice: 'Day was successfully created.' }
         format.json { render :show, status: :created, location: @day }
       else
         format.html { render :new }
@@ -56,19 +57,25 @@ class DaysController < ApplicationController
   def destroy
     @day.destroy
     respond_to do |format|
-      format.html { redirect_to days_url, notice: 'Day was successfully destroyed.' }
+      format.html { redirect_to trip_days_path(@trip), notice: 'Day was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_day
-      @day = Day.find(params[:id])
-    end
+private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def day_params
-      params.require(:day).permit(:trip_id, :name, :description, :cost, :image, :link)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_trip
+    @trip = Trip.find(params[:trip_id])
+  end
+
+  def set_day
+    @day = Day.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def day_params
+    params.require(:day).permit(:trip_id, :name, :description, :cost, :image, :link)
+  end
+
 end

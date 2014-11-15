@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root 'trips#first_or_new'
 
-  resources :days
-  resources :trips
+  resources :trips do
+    resources :days
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
