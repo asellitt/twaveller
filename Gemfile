@@ -37,4 +37,7 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
+gem 'jazz_hands', group: [:development, :test]
+gem 'pry-byebug', group: [:development, :test]
+gem 'better_errors', group: [:development]
+gem 'binding_of_caller', group: [:development]
