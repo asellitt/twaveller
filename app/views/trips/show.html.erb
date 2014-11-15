@@ -8,8 +8,13 @@
 <p>
   <strong>Days:</strong>
   <% @trip.days.each do |day| %>
-    <br/><%= link_to day.name, trip_day_path(@trip, day) %>
+    <br/><%= link_to day.name, trip_day_path(@trip, day) %> <%= day.cost.format %>
   <% end %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @trip.total.format %>
 </p>
 
 <%= link_to 'Add Day', new_trip_day_path(@trip) %> |
