@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :days
+  root 'trips#new'
 
+  resources :days
   resources :trips
 
   # The priority is based upon order of creation: first created -> highest priority.
