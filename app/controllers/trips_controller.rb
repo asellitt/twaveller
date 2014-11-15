@@ -17,6 +17,15 @@ class TripsController < ApplicationController
     @trip = Trip.new
   end
 
+  def first_or_new
+    trip = Trip.first
+    if trip.present?
+      redirect_to :action => 'show', :id => trip.id
+    else
+      redirect_to :action => 'new'
+    end
+  end
+
   # GET /trips/1/edit
   def edit
   end
@@ -61,14 +70,14 @@ class TripsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_trip
-      @trip = Trip.find(params[:id])
-    end
+private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_trip
+    @trip = Trip.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def trip_params
-      params.require(:trip).permit(:name)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def trip_params
+    params.require(:trip).permit(:name)
+  end
 end

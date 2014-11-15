@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'trips#new'
+  root 'trips#first_or_new'
 
   resources :days
   resources :trips
