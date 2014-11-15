@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Trip:</strong>
+  <%= @day.trip %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @day.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @day.description %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @day.cost %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @day.image %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @day.link %>
+</p>
+
+<%= link_to 'Edit', edit_day_path(@day) %> |
+<%= link_to 'Back', days_path %>
