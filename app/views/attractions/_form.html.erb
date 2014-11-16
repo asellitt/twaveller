@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :area_id %><br>
-    <%= f.text_field :area_id %>
-  </div>
-  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
@@ -25,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :cost %><br>
-    <%= f.number_field :cost %>
+    <%= f.text_field :cost, :value => number_with_precision(@attraction.cost, :precision => 2) %>
   </div>
   <div class="field">
     <%= f.label :image %><br>

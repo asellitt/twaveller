@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141115030512) do
+ActiveRecord::Schema.define(version: 20141116021837) do
 
   create_table "areas", force: true do |t|
     t.integer  "trip_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "image"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "areas", ["trip_id"], name: "index_areas_on_trip_id"
+
+  create_table "attractions", force: true do |t|
+    t.integer  "area_id"
     t.string   "name"
     t.text     "description"
     t.integer  "cost"
@@ -24,7 +36,7 @@ ActiveRecord::Schema.define(version: 20141115030512) do
     t.datetime "updated_at"
   end
 
-  add_index "areas", ["trip_id"], name: "index_areas_on_trip_id"
+  add_index "attractions", ["area_id"], name: "index_attractions_on_area_id"
 
   create_table "trips", force: true do |t|
     t.string   "name"

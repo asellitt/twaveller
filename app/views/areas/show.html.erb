@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <strong>Cost:</strong>
-  <%= @area.cost %>
+  <strong>Total:</strong>
+  <%= @area.total.format %>
 </p>
 
 <p>
@@ -25,5 +25,6 @@
   <%= @area.link %>
 </p>
 
+<%= link_to 'Add Attraction', new_trip_area_attraction_path(@trip, @area) %> |
 <%= link_to 'Edit', edit_trip_area_path(@trip, @area) %> |
 <%= link_to 'Back', trip_path(@trip) %>
