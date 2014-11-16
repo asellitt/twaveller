@@ -10,6 +10,13 @@
   <%= @area.description %>
 </p>
 
+ <p>
+  <strong>Attractions:</strong>
+  <% @area.attractions.each do |attraction| %>
+    <br/><%= link_to attraction.name, trip_area_attraction_path(@trip, @area, attraction) %> <%= attraction.cost.format %>
+  <% end %>
+</p>
+
 <p>
   <strong>Total:</strong>
   <%= @area.total.format %>

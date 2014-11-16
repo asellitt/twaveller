@@ -8,7 +8,7 @@
 <p>
   <strong>Areas:</strong>
   <% @trip.areas.each do |area| %>
-    <br/><%= link_to area.name, trip_area_path(@trip, area) %> <%= area.cost.format %>
+    <br/><%= link_to area.name, trip_area_path(@trip, area) %> <%= area.total.format %>
   <% end %>
 </p>
 
