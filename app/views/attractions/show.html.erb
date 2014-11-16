@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Area:</strong>
-  <%= @attraction.area %>
-</p>
-
-<p>
   <strong>Name:</strong>
   <%= @attraction.name %>
 </p>
@@ -31,4 +26,4 @@
 </p>
 
 <%= link_to 'Edit', edit_trip_area_attraction_path(@trip, @area, @attraction) %> |
-<%= link_to 'Back', trip_area_attractions_path(@trip, @area) %>
+<%= link_to 'Back', trip_area_path(@trip, @area) %>

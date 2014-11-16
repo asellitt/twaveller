@@ -30,7 +30,7 @@ class AttractionsController < ApplicationController
 
     respond_to do |format|
       if @attraction.save
-        format.html { redirect_to [@area, @attraction], notice: 'Attraction was successfully created.' }
+        format.html { redirect_to [@trip, @area, @attraction], notice: 'Attraction was successfully created.' }
         format.json { render :show, status: :created, location: @attraction }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class AttractionsController < ApplicationController
   def update
     respond_to do |format|
       if @attraction.update(attraction_params)
-        format.html { redirect_to @attraction, notice: 'Attraction was successfully updated.' }
+        format.html { redirect_to [@trip, @area, @attraction], notice: 'Attraction was successfully updated.' }
         format.json { render :show, status: :ok, location: @attraction }
       else
         format.html { render :edit }
