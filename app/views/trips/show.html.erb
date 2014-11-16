@@ -6,6 +6,10 @@
 </p>
 
 <p>
+  (<%= @trip.start_date %> - <%= @trip.end_date %>)
+</p>
+
+<p>
   <strong>Areas:</strong>
   <% @trip.areas.each do |area| %>
     <br/><%= link_to area.name, trip_area_path(@trip, area) %> <%= area.total.format %>
