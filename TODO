@@ -1,7 +1,6 @@
 TODO:
 - get trips by name (in url)
-- add a day to a trip
-- allow users to specify dollars as DOLLARS
-- support fixed day events
-- support fixed event locations
-- trips have days, days are areas, areas have things to do
+- support fixed days for areas
+- areas need to have a date
+- ajax post an update to an areas date
+- autoload areas with a date onto the calendar
