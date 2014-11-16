@@ -9,9 +9,15 @@ ready = ->
   startDate = calendar.attr('data-start-date')
 
   calendar.fullCalendar({
-    defaultDate: startDate,
-    droppable: true,
-    drop: drop
+     header: {
+      left: 'prev'
+      ,center: 'title'
+      ,right: 'next'
+
+    },
+    ,defaultDate: startDate
+    ,droppable: true
+    ,drop: drop
   })
 
   $('.area').draggable()
