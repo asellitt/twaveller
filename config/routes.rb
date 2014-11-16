@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root 'trips#first_or_new'
 
   resources :trips do
-    resources :areas
+    resources :areas do
+      resources :attractions
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
