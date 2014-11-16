@@ -1,1 +1,3 @@
 asset 'fullcalendar'
+asset 'bootstrap'
+asset 'jquery-ui'

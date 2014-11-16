@@ -1,6 +1,8 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "fullcalendar": "latest"
+    "fullcalendar": "latest",
+    "bootstrap": "latest",
+    "jquery-ui": "latest"
   }
 }

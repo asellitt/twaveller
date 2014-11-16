@@ -1,28 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div id="notice"><%= notice %></div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @trip.name %>
-</p>
+<div class="container-fluid">
+  <div class="row col-md-4">
+    <div>
+      <strong>Name:</strong>
+      <%= @trip.name %>
+    </div>
 
-<p>
-  (<%= @trip.start_date %> - <%= @trip.end_date %>)
-</p>
+    <div>
+      (<%= @trip.start_date %> - <%= @trip.end_date %>)
+    </div>
 
-<p>
-  <strong>Areas:</strong>
-  <% @trip.areas.each do |area| %>
-    <br/><%= link_to area.name, trip_area_path(@trip, area) %> <%= area.total.format %>
-  <% end %>
-</p>
+    <div>
+      <strong>Areas:</strong>
+      <% @trip.areas.each do |area| %>
+        <div class="area well">
+          <%= link_to area.name, trip_area_path(@trip, area) %> <%= area.total.format %>
+        </div>
+      <% end %>
+    </div>
 
-<p>
-  <strong>Total:</strong>
-  <%= @trip.total.format %>
-</p>
+    <div>
+      <strong>Total:</strong>
+      <%= @trip.total.format %>
+    </div>
 
-<%= link_to 'Add Area', new_trip_area_path(@trip) %> |
-<%= link_to 'Edit', edit_trip_path(@trip) %> |
-<%= link_to 'Back', trips_path %>
-
-<div id='calendar'></div>
+    <%= link_to 'Add Area', new_trip_area_path(@trip) %> |
+    <%= link_to 'Edit', edit_trip_path(@trip) %> |
+    <%= link_to 'Back', trips_path %>
+  </div>
+  <div class="row col-md-8">
+    <div id='calendar' data-start-date="<%= @trip.start_date %>"></div>
+  </div>
+</div>
