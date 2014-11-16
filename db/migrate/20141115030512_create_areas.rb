@@ -4,7 +4,6 @@ class CreateAreas < ActiveRecord::Migration
       t.references :trip, index: true
       t.string :name
       t.text :description
-      t.integer :cost
       t.string :image
       t.string :link
 

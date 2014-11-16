@@ -25,7 +25,7 @@ class AreasController < ApplicationController
   # POST /areas
   # POST /areas.json
   def create
-    @area = @trip.areas.new(converted_area_params)
+    @area = @trip.areas.new(area_params)
 
     respond_to do |format|
       if @area.save
@@ -42,7 +42,7 @@ class AreasController < ApplicationController
   # PATCH/PUT /areas/1.json
   def update
     respond_to do |format|
-      if @area.update(converted_area_params)
+      if @area.update(area_params)
         format.html { redirect_to [@trip, @area], notice: 'Area was successfully updated.' }
         format.json { render :show, status: :ok, location: @area }
       else
@@ -76,13 +76,6 @@ private
   # Never trust parameters from the scary internet, only allow the white list through.
   def area_params
     params.require(:area).permit(:trip_id, :name, :description, :cost, :image, :link)
-  end
-
-  # what the fuck hack
-  def converted_area_params
-    area_params.tap do |params|
-      params[:cost] = Money.new( (params[:cost].to_f * 100).to_i )
-    end
   end
 
 end
