@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116021837) do
+ActiveRecord::Schema.define(version: 20141116041251) do
 
   create_table "areas", force: true do |t|
     t.integer  "trip_id"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20141116021837) do
 
   create_table "trips", force: true do |t|
     t.string   "name"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
