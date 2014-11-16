@@ -15,7 +15,8 @@
       <strong>Areas:</strong>
       <% @trip.areas.each do |area| %>
         <div class="area well">
-          <%= link_to area.name, trip_area_path(@trip, area) %> <%= area.total.format %>
+          <%= link_to area.name, trip_area_path(@trip, area) %>
+          (<%= area.total.format %>)
         </div>
       <% end %>
     </div>

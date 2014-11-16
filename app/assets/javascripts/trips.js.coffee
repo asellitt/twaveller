@@ -1,7 +1,5 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 ready = ->
   console.log('>>>trip#ready')
 
@@ -9,15 +7,16 @@ ready = ->
   startDate = calendar.attr('data-start-date')
 
   calendar.fullCalendar({
-     header: {
+    defaultDate: startDate
+    ,droppable: true
+    ,drop: drop
+    ,editable: true
+    ,header: {
       left: 'prev'
       ,center: 'title'
       ,right: 'next'
 
     },
-    ,defaultDate: startDate
-    ,droppable: true
-    ,drop: drop
   })
 
   $('.area').draggable()
@@ -26,7 +25,14 @@ ready = ->
 
 drop = (moment, allDay) ->
   console.log('>>>trip#drop')
-  console.log("Dropped on " + moment.format() + " with allDay=" + allDay)
+
+  listedArea = $(this).data('eventObject')
+  calendarArea = $.extend({}, listedArea)
+  calendarArea.start = moment
+  calendarArea.title = $(this).text()
+  $('#calendar').fullCalendar('renderEvent', calendarArea, true)
+  $(this).remove()
+
   console.log('<<<trip#drop')
 
 $(document).ready(ready)

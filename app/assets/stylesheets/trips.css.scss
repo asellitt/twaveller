@@ -1,3 +1,16 @@
 // Place all the styles related to the Trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.fc-content-skeleton {
+  height: 100%;
+
+  table {
+    height: 100%;
+  }
+}
+
+.fc-day-grid-event {
+  height: 100%;
+  display: block;
+}
