@@ -75,7 +75,7 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def area_params
-    params.require(:area).permit(:trip_id, :name, :description, :cost, :image, :link)
+    params.require(:area).permit(:trip_id, :name, :description, :cost, :image, :link, :proposed_date)
   end
 
 end
