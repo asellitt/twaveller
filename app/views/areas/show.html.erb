@@ -2,28 +2,28 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @day.name %>
+  <%= @area.name %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @day.description %>
+  <%= @area.description %>
 </p>
 
 <p>
   <strong>Cost:</strong>
-  <%= @day.cost %>
+  <%= @area.cost %>
 </p>
 
 <p>
   <strong>Image:</strong>
-  <%= @day.image %>
+  <%= @area.image %>
 </p>
 
 <p>
   <strong>Link:</strong>
-  <%= @day.link %>
+  <%= @area.link %>
 </p>
 
-<%= link_to 'Edit', edit_trip_day_path(@trip, @day) %> |
-<%= link_to 'Back', trip_days_path(@trip) %>
+<%= link_to 'Edit', edit_trip_area_path(@trip, @area) %> |
+<%= link_to 'Back', trip_areas_path(@trip) %>

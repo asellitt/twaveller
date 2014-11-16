@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141115030512) do
 
-  create_table "days", force: true do |t|
+  create_table "areas", force: true do |t|
     t.integer  "trip_id"
     t.string   "name"
     t.text     "description"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20141115030512) do
     t.datetime "updated_at"
   end
 
-  add_index "days", ["trip_id"], name: "index_days_on_trip_id"
+  add_index "areas", ["trip_id"], name: "index_areas_on_trip_id"
 
   create_table "trips", force: true do |t|
     t.string   "name"

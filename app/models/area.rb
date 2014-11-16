@@ -1,3 +1,3 @@
-class Day < ActiveRecord::Base
+class Area < ActiveRecord::Base
   encapsulate_as_money :cost
 end

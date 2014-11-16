@@ -1,6 +1,6 @@
-class CreateDays < ActiveRecord::Migration
+class CreateAreas < ActiveRecord::Migration
   def change
-    create_table :days do |t|
+    create_table :areas do |t|
       t.references :trip, index: true
       t.string :name
       t.text :description

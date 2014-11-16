@@ -7,8 +7,8 @@
 
 <p>
   <strong>Days:</strong>
-  <% @trip.days.each do |day| %>
-    <br/><%= link_to day.name, trip_day_path(@trip, day) %> <%= day.cost.format %>
+  <% @trip.areas.each do |area| %>
+    <br/><%= link_to area.name, trip_area_path(@trip, area) %> <%= area.cost.format %>
   <% end %>
 </p>
 
@@ -17,6 +17,6 @@
   <%= @trip.total.format %>
 </p>
 
-<%= link_to 'Add Day', new_trip_day_path(@trip) %> |
+<%= link_to 'Add Day', new_trip_area_path(@trip) %> |
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <%= link_to 'Back', trips_path %>

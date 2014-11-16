@@ -3,3 +3,5 @@ TODO:
 - add a day to a trip
 - allow users to specify dollars as DOLLARS
 - support fixed day events
+- support fixed event locations
+- trips have days, days are areas, areas have things to do

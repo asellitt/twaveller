@@ -1,7 +1,7 @@
 class Trip < ActiveRecord::Base
-  has_many :days
+  has_many :areas
 
   def total
-    days.collect(&:cost).sum
+    Money.new(areas.collect(&:cost).sum)
   end
 end
