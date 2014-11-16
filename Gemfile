@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'money'
 gem 'encapsulate_as_money'
+gem 'bower-rails'
 
 group :development do
   gem 'better_errors'
