@@ -14,7 +14,7 @@
     <div>
       <strong>Areas:</strong>
       <% @trip.areas.each do |area| %>
-        <div class="area well" data-id="<%= area.id %>">
+        <div class="area well" data-id="<%= area.id %>" data-proposed-date="<%= area.proposed_date %>">
           <%= link_to area.name, trip_area_path(@trip, area) %>
           (<%= area.total.format %>)
         </div>

@@ -30,6 +30,7 @@ ready = ->
       ,right: 'next'
 
     }
+    ,events: loadEvents()
     ,eventDrop: (event, delta, revertFunc, jsEvent, ui, view) ->
       console.log('>>>trip#calendar#eventDrop')
 
@@ -69,6 +70,20 @@ update = (area_id, date, title, element) ->
   }).done
 
   console.log('<<<trip#update')
+
+loadEvents = ->
+  console.log('>>>trip#loadEvents')
+
+  events = [];
+  for area in $('.area[data-proposed-date!=""]')
+    events.push {
+      title: $(area).text(),
+      start: $(area).attr('data-proposed-date'),
+      area_id: $(area).attr('data-id'),
+    }
+
+  console.log('<<<trip#loadEvents')
+  events
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
