@@ -1,5 +1,6 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
+
 ready = ->
   console.log('>>>trip#ready')
 
@@ -9,31 +10,57 @@ ready = ->
   calendar.fullCalendar({
     defaultDate: startDate
     ,droppable: true
-    ,drop: drop
+    ,drop: (date, allDay) ->
+        console.log('>>>trip#drop')
+        element = $(this)
+        update(element.attr('data-id'), date, element.text(), element)
+        console.log('<<<trip#drop')
     ,editable: true
     ,header: {
       left: 'prev'
       ,center: 'title'
       ,right: 'next'
 
-    },
+    }
+    ,eventDrop: (event, delta, revertFunc, jsEvent, ui, view) ->
+      console.log('>>>trip#calendar#eventDrop')
+
+      update(event.area_id, event.start, event.title, undefined)
+
+      console.log('<<<trip#calendar#eventDrop')
   })
 
   $('.area').draggable()
 
   console.log('<<<trip#ready')
 
-drop = (moment, allDay) ->
-  console.log('>>>trip#drop')
+update = (area_id, date, title, element) ->
+  console.log('>>>trip#update')
 
-  listedArea = $(this).data('eventObject')
-  calendarArea = $.extend({}, listedArea)
-  calendarArea.start = moment
-  calendarArea.title = $(this).text()
-  $('#calendar').fullCalendar('renderEvent', calendarArea, true)
-  $(this).remove()
+  trip_id = $('#trip').attr('data-id')
+  url = "/trips/#{trip_id}/areas/#{area_id}"
 
-  console.log('<<<trip#drop')
+  $.ajax({
+    type: 'PUT'
+    ,url: url
+    ,data: { area: { proposed_date: date.toDate() } }
+    ,dataType: 'json'
+    ,success: ->
+      console.log('>>>trip#update#postSuccess')
+
+      if element != undefined
+        listedArea = element.data('eventObject')
+        calendarArea = $.extend({}, listedArea)
+        calendarArea.start = date
+        calendarArea.title = title
+        calendarArea.area_id = area_id
+        $('#calendar').fullCalendar('renderEvent', calendarArea, true)
+        element.hide()
+
+      console.log('<<<trip#update#postSuccess')
+  }).done
+
+  console.log('<<<trip#update')
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

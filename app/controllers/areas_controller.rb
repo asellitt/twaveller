@@ -30,7 +30,7 @@ class AreasController < ApplicationController
     respond_to do |format|
       if @area.save
         format.html { redirect_to [@trip, @area], notice: 'Area was successfully created.' }
-        format.json { render :show, status: :created, location: @area }
+        format.json { render :show, status: :created, location: [@trip, @area] }
       else
         format.html { render :new }
         format.json { render json: @area.errors, status: :unprocessable_entity }
@@ -43,8 +43,8 @@ class AreasController < ApplicationController
   def update
     respond_to do |format|
       if @area.update(area_params)
-        format.html { redirect_to [@trip, @area], notice: 'Area was successfully updated.' }
-        format.json { render :show, status: :ok, location: @area }
+        format.html { raise 'your mum';redirect_to [@trip, @area], notice: 'Area was successfully updated.' }
+        format.json { render :show, status: :ok, location: [@trip, @area] }
       else
         format.html { render :edit }
         format.json { render json: @area.errors, status: :unprocessable_entity }

@@ -1,6 +1,6 @@
 <div id="notice"><%= notice %></div>
 
-<div class="container-fluid">
+<div id="trip" class="container-fluid" data-id="<%= @trip.id %>">
   <div class="row col-md-4">
     <div>
       <strong>Name:</strong>
@@ -14,7 +14,7 @@
     <div>
       <strong>Areas:</strong>
       <% @trip.areas.each do |area| %>
-        <div class="area well">
+        <div class="area well" data-id="<%= area.id %>">
           <%= link_to area.name, trip_area_path(@trip, area) %>
           (<%= area.total.format %>)
         </div>
