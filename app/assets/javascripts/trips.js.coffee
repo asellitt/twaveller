@@ -16,6 +16,12 @@ ready = ->
         update(element.attr('data-id'), date, element.text(), element)
         console.log('<<<trip#drop')
     ,editable: true
+    ,eventClick: (event, jsEvent, view) ->
+      console.log('>>>trip#calendar#eventClick')
+
+      $(".area[data-id=#{event.area_id}] a")[0].click()
+
+      console.log('<<<trip#calendar#eventClick')
     ,header: {
       left: 'prev'
       ,center: 'title'
