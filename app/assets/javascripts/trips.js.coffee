@@ -12,8 +12,10 @@ ready = ->
     ,droppable: true
     ,drop: (date, allDay) ->
         console.log('>>>trip#drop')
+
         element = $(this)
         update(element.attr('data-id'), date, element.text(), element)
+
         console.log('<<<trip#drop')
     ,editable: true
     ,eventClick: (event, jsEvent, view) ->
