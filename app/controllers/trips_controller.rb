@@ -78,6 +78,6 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def trip_params
-    params.require(:trip).permit(:name, :start_date, :end_date)
+    params.require(:trip).permit(:name, :banner_image, :start_date, :end_date)
   end
 end
