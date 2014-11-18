@@ -8,21 +8,22 @@
   <% end %>
 
   <div class="row">
+    <div class="col-md-12 text-center">
+      <h3><%= @area.name %></h3>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-12">
-      <p>
-        <strong>Name:</strong>
-        <%= @area.name %>
-      </p>
+      <blockquote class="text-left">
+        <p>
+          <%= @area.description %>
+        </p>
 
-      <p>
-        <strong>Description:</strong>
-        <%= @area.description %>
-      </p>
-
-      <p>
-        <strong>Total:</strong>
-        <%= @area.total.format %>
-      </p>
+        <footer>
+          <strong>Total:</strong>
+          <%= @area.total.format %>
+        </footer>
+      </blockquote>
 
       <p>
         <strong>Image:</strong>
@@ -37,44 +38,22 @@
   </div>
 
   <div class="row">
-    <% @area.attractions.each do |attraction| %>
-      <div class="col-xs-4 col-md-4">
-        <div class="thumbnail">
-          <img src="<%= attraction.image %>">
-          <div class="caption">
-            <h3><%= attraction.name %></h3>
-            <p><%= attraction.description %></p>
-            <p><%= attraction.cost.format %></p>
-            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+    <% 3.times do %>
+      <% @area.attractions.each do |attraction| %>
+        <div class="col-xs-4 col-md-4">
+          <div class="thumbnail">
+            <img src="<%= attraction.image %>">
+            <div class="caption">
+              <h3><%= attraction.name %></h3>
+              <p><%= attraction.description %></p>
+              <p><%= attraction.cost.format %></p>
+              <p>
+                <%= link_to attraction.name, trip_area_attraction_path(@trip, @area, attraction), role: 'button', class: 'btn btn-default'%>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-    <% @area.attractions.each do |attraction| %>
-      <div class="col-xs-4 col-md-4">
-        <div class="thumbnail">
-          <img src="<%= attraction.image %>">
-          <div class="caption">
-            <h3><%= attraction.name %></h3>
-            <p><%= attraction.description %></p>
-            <p><%= attraction.cost.format %></p>
-            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <% @area.attractions.each do |attraction| %>
-      <div class="col-xs-4 col-md-4">
-        <div class="thumbnail">
-          <img src="<%= attraction.image %>">
-          <div class="caption">
-            <h3><%= attraction.name %></h3>
-            <p><%= attraction.description %></p>
-            <p><%= attraction.cost.format %></p>
-            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-          </div>
-        </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 
@@ -86,3 +65,5 @@
     </div>
   </div>
 </div>
+
+<footer class="pagefooter">© <a href="https://twitter.com/asellitt">@asellitt</a></footer>
