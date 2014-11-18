@@ -41,6 +41,8 @@ ready = ->
 
   $('.area').draggable()
 
+  $('.jumbotron').css('background-image', "url(#{$('.jumbotron').attr('data-background')})")
+
   console.log('<<<trip#ready')
 
 update = (area_id, date, title, element) ->

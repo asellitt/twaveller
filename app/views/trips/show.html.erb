@@ -1,36 +1,43 @@
-<div id="notice"><%= notice %></div>
 
 <div id="trip" class="container-fluid" data-id="<%= @trip.id %>">
-  <div class="row col-md-4">
-    <div>
-      <strong>Name:</strong>
-      <%= @trip.name %>
+  <div class="row">
+    <div class="col-md-12 jumbotron" data-background="http://www.lemon-holidays.com/images/banner-home-japan.jpg">
+      <div class="container">
+        <h1><%= @trip.name %></h1>
+        <p> (<%= @trip.start_date.to_date %> - <%= @trip.end_date.to_date %>)</p>
+      </div>
     </div>
-
-    <div>
-      (<%= @trip.start_date %> - <%= @trip.end_date %>)
-    </div>
-
-    <div>
-      <strong>Areas:</strong>
-      <% @trip.areas.each do |area| %>
-        <div class="area well" data-id="<%= area.id %>" data-proposed-date="<%= area.proposed_date %>">
-          <%= link_to area.name, trip_area_path(@trip, area) %>
-          (<%= area.total.format %>)
-        </div>
-      <% end %>
-    </div>
-
-    <div>
-      <strong>Total:</strong>
-      <%= @trip.total.format %>
-    </div>
-
-    <%= link_to 'Add Area', new_trip_area_path(@trip) %> |
-    <%= link_to 'Edit', edit_trip_path(@trip) %> |
-    <%= link_to 'Back', trips_path %>
   </div>
-  <div class="row col-md-8">
-    <div id='calendar' data-start-date="<%= @trip.start_date %>"></div>
+
+  <% if notice.present? %>
+    <div class="row">
+      <p id="notice" class="bg-info"><%= notice %></p>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div>
+        <strong>Areas:</strong>
+        <% @trip.areas.each do |area| %>
+          <div class="area well" data-id="<%= area.id %>" data-proposed-date="<%= area.proposed_date %>">
+            <%= link_to area.name, trip_area_path(@trip, area) %>
+            (<%= area.total.format %>)
+          </div>
+        <% end %>
+      </div>
+
+      <div>
+        <strong>Total:</strong>
+        <%= @trip.total.format %>
+      </div>
+
+      <%= link_to 'Add Area', new_trip_area_path(@trip) %> |
+      <%= link_to 'Edit', edit_trip_path(@trip) %> |
+      <%= link_to 'Back', trips_path %>
+    </div>
+    <div class="col-md-8">
+      <div id='calendar' data-start-date="<%= @trip.start_date %>"></div>
+    </div>
   </div>
 </div>
