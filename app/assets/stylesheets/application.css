@@ -16,3 +16,25 @@
  *= require_tree .
  *= require_self
  */
+
+
+ #trip.jumbotron {
+   background-size: cover;
+   border-radius: 0px;
+ }
+
+ #notice {
+   padding: 15px;
+   margin: 15px;
+   color: #333333;
+ }
+
+ .center {
+   text-align: center;
+ }
+
+ footer {
+   width: 100%;
+   text-align: center;
+   padding: 15px;
+ }

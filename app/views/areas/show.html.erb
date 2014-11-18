@@ -1,37 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <%= render 'common/header' %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @area.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @area.description %>
-</p>
-
- <p>
-  <strong>Attractions:</strong>
-  <% @area.attractions.each do |attraction| %>
-    <br/><%= link_to attraction.name, trip_area_attraction_path(@trip, @area, attraction) %> <%= attraction.cost.format %>
+  <% if notice.present? %>
+    <div class="row">
+      <p id="notice" class="bg-info"><%= notice %></p>
+    </div>
   <% end %>
-</p>
 
-<p>
-  <strong>Total:</strong>
-  <%= @area.total.format %>
-</p>
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        <strong>Name:</strong>
+        <%= @area.name %>
+      </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= @area.image %>
-</p>
+      <p>
+        <strong>Description:</strong>
+        <%= @area.description %>
+      </p>
 
-<p>
-  <strong>Link:</strong>
-  <%= @area.link %>
-</p>
+       <p>
+        <strong>Attractions:</strong>
+        <% @area.attractions.each do |attraction| %>
+          <br/><%= link_to attraction.name, trip_area_attraction_path(@trip, @area, attraction) %> <%= attraction.cost.format %>
+        <% end %>
+      </p>
 
-<%= link_to 'Add Attraction', new_trip_area_attraction_path(@trip, @area) %> |
-<%= link_to 'Edit', edit_trip_area_path(@trip, @area) %> |
-<%= link_to 'Back', trip_path(@trip) %>
+      <p>
+        <strong>Total:</strong>
+        <%= @area.total.format %>
+      </p>
+
+      <p>
+        <strong>Image:</strong>
+        <%= @area.image %>
+      </p>
+
+      <p>
+        <strong>Link:</strong>
+        <%= @area.link %>
+      </p>
+
+      <%= link_to 'Add Attraction', new_trip_area_attraction_path(@trip, @area) %> |
+      <%= link_to 'Edit', edit_trip_area_path(@trip, @area) %> |
+      <%= link_to 'Back', trip_path(@trip) %>
+    </div>
+  </div>
+</div>

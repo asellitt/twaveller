@@ -1,0 +1,13 @@
+  <div class="row">
+    <div
+        id="trip"
+        class="col-md-12 jumbotron"
+        data-id="<%= @trip.id %>"
+        data-background="<%= @trip.banner_image %>"
+    >
+      <div class="container">
+        <h1><%= @trip.name %></h1>
+        <p> (<%= @trip.start_date.to_date %> - <%= @trip.end_date.to_date %>)</p>
+      </div>
+    </div>
+  </div>
