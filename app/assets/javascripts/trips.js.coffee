@@ -39,7 +39,11 @@ ready = ->
       console.log('<<<trip#calendar#eventDrop')
   })
 
-  $('.area').draggable()
+  $('.area.bg-info').draggable({
+    revert: (event, ui) ->
+      $(this).data("uiDraggable").originalPosition = { top : 0, left : 0 }
+      !event
+  })
 
   $('.jumbotron').css('background-image', "url(#{$('.jumbotron').attr('data-background')})")
 
@@ -66,7 +70,7 @@ update = (area_id, date, title, element) ->
         calendarArea.title = title
         calendarArea.area_id = area_id
         $('#calendar').fullCalendar('renderEvent', calendarArea, true)
-        element.hide()
+        element.removeClass('bg-info').draggable('disable')
 
       console.log('<<<trip#update#postSuccess')
   }).done
@@ -79,9 +83,10 @@ loadEvents = ->
   events = [];
   for area in $('.area[data-proposed-date!=""]')
     events.push {
-      title: $(area).text(),
-      start: $(area).attr('data-proposed-date'),
-      area_id: $(area).attr('data-id'),
+      title: "#{$(area).text()}$#{$(area).attr('data-cost')}"
+      ,start: $(area).attr('data-proposed-date')
+      ,allDay: true
+      ,area_id: $(area).attr('data-id')
     }
 
   console.log('<<<trip#loadEvents')
