@@ -19,13 +19,6 @@
         <%= @area.description %>
       </p>
 
-       <p>
-        <strong>Attractions:</strong>
-        <% @area.attractions.each do |attraction| %>
-          <br/><%= link_to attraction.name, trip_area_attraction_path(@trip, @area, attraction) %> <%= attraction.cost.format %>
-        <% end %>
-      </p>
-
       <p>
         <strong>Total:</strong>
         <%= @area.total.format %>
@@ -40,7 +33,53 @@
         <strong>Link:</strong>
         <%= @area.link %>
       </p>
+    </div>
+  </div>
 
+  <div class="row">
+    <% @area.attractions.each do |attraction| %>
+      <div class="col-xs-4 col-md-4">
+        <div class="thumbnail">
+          <img src="<%= attraction.image %>">
+          <div class="caption">
+            <h3><%= attraction.name %></h3>
+            <p><%= attraction.description %></p>
+            <p><%= attraction.cost.format %></p>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <% @area.attractions.each do |attraction| %>
+      <div class="col-xs-4 col-md-4">
+        <div class="thumbnail">
+          <img src="<%= attraction.image %>">
+          <div class="caption">
+            <h3><%= attraction.name %></h3>
+            <p><%= attraction.description %></p>
+            <p><%= attraction.cost.format %></p>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <% @area.attractions.each do |attraction| %>
+      <div class="col-xs-4 col-md-4">
+        <div class="thumbnail">
+          <img src="<%= attraction.image %>">
+          <div class="caption">
+            <h3><%= attraction.name %></h3>
+            <p><%= attraction.description %></p>
+            <p><%= attraction.cost.format %></p>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
       <%= link_to 'Add Attraction', new_trip_area_attraction_path(@trip, @area) %> |
       <%= link_to 'Edit', edit_trip_area_path(@trip, @area) %> |
       <%= link_to 'Back', trip_path(@trip) %>

@@ -14,14 +14,14 @@
           <h3>Areas</h3>
         </div>
         <% @trip.areas.each do |area| %>
-            <div
-                class="area <%= area.proposed_date.present? ? '': 'bg-info' %>"
-                data-id="<%= area.id %>"
-                data-proposed-date="<%= area.proposed_date %>"
-                data-cost="<%= area.total %>"
-            >
-              <%= link_to area.name, trip_area_path(@trip, area) %>
-            </div>
+          <div
+              class="area <%= area.proposed_date.present? ? '': 'bg-info' %>"
+              data-id="<%= area.id %>"
+              data-proposed-date="<%= area.proposed_date %>"
+              data-cost="<%= area.total %>"
+          >
+            <%= link_to area.name, trip_area_path(@trip, area) %>
+          </div>
         <% end %>
       </div>
 
@@ -39,4 +39,5 @@
     </div>
   </div>
 </div>
+
 <footer>© <a href="https://twitter.com/asellitt">@asellitt</a></footer>

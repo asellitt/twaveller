@@ -43,7 +43,7 @@ class AttractionsController < ApplicationController
   # PATCH/PUT /attractions/1.json
   def update
     respond_to do |format|
-      if @attraction.update(attraction_params)
+      if @attraction.update(converted_attraction_params)
         format.html { redirect_to [@trip, @area, @attraction], notice: 'Attraction was successfully updated.' }
         format.json { render :show, status: :ok, location: @attraction }
       else
