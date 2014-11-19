@@ -34,16 +34,7 @@
     <div class="row">
       <% group.each do |attraction| %>
         <div class="col-xs-4 col-md-4">
-          <div class="thumbnail">
-            <div class="attraction-image" data-background="<%= attraction.image %>"></div>
-            <div class="caption">
-              <h3>
-                <%= link_to attraction.name, trip_area_attraction_path(@trip, @area, attraction) %>
-              </h3>
-              <p><%= attraction.description %></p>
-              <p><%= attraction.cost.format %></p>
-            </div>
-          </div>
+          <%= render 'attractions/attraction', attraction: attraction %>
         </div>
       <% end %>
     </div>
