@@ -2,7 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.image {
+.area-image {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  padding-bottom: 25px;
+}
+
+.attraction-image {
   height: 250px;
   background-size: cover;
 }

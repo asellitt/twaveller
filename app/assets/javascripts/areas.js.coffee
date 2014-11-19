@@ -9,7 +9,7 @@ ready = ->
 
 initializeAreas = ->
   console.log('>>>area#initializeHeader')
-  $('.image').each( (index) ->
+  $('.attraction-image').each( (index) ->
     background = $(this).attr('data-background')
     $(this).css('background-image', "url(#{background})")
   )

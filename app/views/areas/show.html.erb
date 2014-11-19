@@ -13,10 +13,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
+      <%= image_tag @area.image, class: 'area-image' %>
+    </div>
+    <div class="col-md-6">
       <blockquote class="text-left">
         <p>
-          <%= @area.description %>
+          <%= @area.description %> (see: <%= link_to 'here', @area.link %>)
         </p>
 
         <footer>
@@ -24,16 +27,6 @@
           <%= @area.total.format %>
         </footer>
       </blockquote>
-
-      <p>
-        <strong>Image:</strong>
-        <%= @area.image %>
-      </p>
-
-      <p>
-        <strong>Link:</strong>
-        <%= @area.link %>
-      </p>
     </div>
   </div>
 
@@ -42,7 +35,7 @@
       <% group.each do |attraction| %>
         <div class="col-xs-4 col-md-4">
           <div class="thumbnail">
-            <div class="image" data-background="<%= attraction.image %>"></div>
+            <div class="attraction-image" data-background="<%= attraction.image %>"></div>
             <div class="caption">
               <h3><%= attraction.name %></h3>
               <p><%= attraction.description %></p>
