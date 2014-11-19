@@ -22,3 +22,5 @@ group :development, :test do
   gem 'jazz_hands'
   gem 'pry-byebug'
 end
+
+ruby "2.0.0"
