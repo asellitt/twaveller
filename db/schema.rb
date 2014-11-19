@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141118110523) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "areas", force: true do |t|
     t.integer  "trip_id"
     t.string   "name"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20141118110523) do
     t.datetime "proposed_date"
   end
 
-  add_index "areas", ["trip_id"], name: "index_areas_on_trip_id"
+  add_index "areas", ["trip_id"], name: "index_areas_on_trip_id", using: :btree
 
   create_table "attractions", force: true do |t|
     t.integer  "area_id"
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 20141118110523) do
     t.datetime "updated_at"
   end
 
-  add_index "attractions", ["area_id"], name: "index_attractions_on_area_id"
+  add_index "attractions", ["area_id"], name: "index_attractions_on_area_id", using: :btree
 
   create_table "trips", force: true do |t|
     t.string   "name"
