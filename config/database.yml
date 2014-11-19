@@ -79,7 +79,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: twaveller_production
-  username: twaveller
-  password: <%= ENV['TWAVELLER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['TWAVELLER_DATABASE_URL'] %>
