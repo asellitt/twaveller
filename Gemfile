@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'money'
 gem 'encapsulate_as_money'
 gem 'bower-rails'
+gem 'rails_12factor'
 
 group :development do
   gem 'better_errors'
