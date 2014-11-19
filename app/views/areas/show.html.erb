@@ -37,12 +37,11 @@
           <div class="thumbnail">
             <div class="attraction-image" data-background="<%= attraction.image %>"></div>
             <div class="caption">
-              <h3><%= attraction.name %></h3>
+              <h3>
+                <%= link_to attraction.name, trip_area_attraction_path(@trip, @area, attraction) %>
+              </h3>
               <p><%= attraction.description %></p>
               <p><%= attraction.cost.format %></p>
-              <p>
-                <%= link_to attraction.name, trip_area_attraction_path(@trip, @area, attraction), role: 'button', class: 'btn btn-default'%>
-              </p>
             </div>
           </div>
         </div>
