@@ -9,7 +9,7 @@
 
   <div class="row">
     <div class="col-md-12 text-center">
-      <h3><%= @area.name %></h3>
+      <h3><%= @area.name %> <small><%= @area.proposed_date %></small></h3>
     </div>
   </div>
   <div class="row">
@@ -24,7 +24,7 @@
 
         <footer>
           <strong>Total:</strong>
-          <%= @area.total.format %>
+          <%= @area.total %>
         </footer>
       </blockquote>
     </div>
