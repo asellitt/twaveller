@@ -12,6 +12,7 @@ initializeAreas = ->
   $('.attraction-image').each( (index) ->
     background = $(this).attr('data-background')
     $(this).css('background-image', "url(#{background})")
+    $(this).css('background-position', "center")
   )
   console.log('<<<area#initializeHeader')
 
