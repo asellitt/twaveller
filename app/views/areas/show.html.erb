@@ -13,20 +13,24 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6">
-      <%= image_tag @presenter.image, class: 'area-image' %>
-    </div>
-    <div class="col-md-6">
-      <blockquote class="text-left">
-        <p>
-          <%= @presenter.description %>
-        </p>
+    <div class="col-md-12">
+      <div class="row thumbnail area-thumbnail">
+        <div class="col-md-6">
+          <%= image_tag @presenter.image, class: 'area-image' %>
+        </div>
+        <div class="col-md-6">
+          <blockquote class="text-left">
+            <p>
+              <%= @presenter.description %>
+            </p>
 
-        <footer>
-          <strong>Total:</strong>
-          <%= @presenter.total %>
-        </footer>
-      </blockquote>
+            <footer>
+              <strong>Total:</strong>
+              <%= @presenter.total %>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
     </div>
   </div>
 
