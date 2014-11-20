@@ -1,6 +1,8 @@
 TODO:
 - get trips by name (in url)
 - support fixed days for areas
-- areas need to have a date
-- ajax post an update to an areas date
-- autoload areas with a date onto the calendar
+- add a nav bar
+- add logins
+- put the jumbotron on ALL the pages
+- put the footer on ALL the pages
+- support for local currencies (add currency to trip)
