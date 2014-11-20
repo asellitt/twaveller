@@ -1,6 +1,6 @@
 class AreaPresenter
 
-  delegate :attractions, :name, :description, :image, :link, to: :area
+  delegate :attractions, :name, :image, to: :area
 
   def initialize(area)
     @area = area

@@ -1,5 +1,5 @@
 class AreasController < ApplicationController
-  before_action :set_area, only: [:edit, :update, :destroy]
+  before_action :set_area, only: [:show, :edit, :update, :destroy]
   before_action :set_trip
 
   # GET /areas
@@ -11,7 +11,7 @@ class AreasController < ApplicationController
   # GET /areas/1
   # GET /areas/1.json
   def show
-    @area = AreaPresenter.new(Area.find(params[:id]))
+    @presenter = AreaPresenter.new(@area)
   end
 
   # GET /areas/new
@@ -76,7 +76,7 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def area_params
-    params.require(:area).permit(:trip_id, :name, :description, :cost, :image, :link, :proposed_date)
+    params.require(:area).permit(:trip_id, :name, :description, :cost, :image, :proposed_date)
   end
 
 end
