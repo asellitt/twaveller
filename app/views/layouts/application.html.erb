@@ -1,18 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Twaveller</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Twaveller</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <%= @navigation_presenter.application_name %>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <% if @navigation_presenter.user_signed_in? %>
+            <ul class="nav navbar-nav">
+              <li><a href="#">Put</a></li>
+              <li><a href="#">Actions</a></li>
+              <li><a href="#">Here</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="navbar-text">Welcome <%= @navigation_presenter.username %></li>
+              <li><%= link_to 'Log out', destroy_user_session_path %></li>
+            </ul>
+          <% else %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Sign In</a></li>
+              <li><a href="#">Sign Up</a></li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </nav>
 
-<!-- TODO: sort this shit out -->
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+    <div class="container-fluid">
 
-<%= yield %>
+      <%= render 'common/header' %>
 
-</body>
+      <% if notice.present? %>
+        <div class="row">
+          <p id="notice" class="bg-info"><%= notice %></p>
+        </div>
+      <% end %>
+      <% if alert.present? %>
+        <div class="row">
+          <p id="alert" class="bg-danger"><%= alert %></p>
+        </div>
+      <% end %>
+
+      <%= yield %>
+
+    </div>
+
+    <footer class="pagefooter">© <a href="https://twitter.com/asellitt">@asellitt</a></footer>
+  </body>
 </html>

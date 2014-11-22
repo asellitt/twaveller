@@ -1,43 +1,31 @@
-<div class="container-fluid">
-  <%= render 'common/header' %>
-
-  <% if notice.present? %>
-    <div class="row">
-      <p id="notice" class="bg-info"><%= notice %></p>
-    </div>
-  <% end %>
-
-  <div class="row">
-    <div class="col-md-3">
-      <div>
-        <div class="text-center">
-          <h3>Areas</h3>
+<div class="row">
+  <div class="col-md-3">
+    <div>
+      <div class="text-center">
+        <h3>Areas</h3>
+      </div>
+      <% @trip.areas.each do |area| %>
+        <div
+            class="area <%= area.proposed_date.present? ? '': 'bg-info' %>"
+            data-id="<%= area.id %>"
+            data-proposed-date="<%= area.proposed_date %>"
+            data-cost="<%= area.total %>"
+        >
+          <%= link_to area.name, trip_area_path(@trip, area) %>
         </div>
-        <% @trip.areas.each do |area| %>
-          <div
-              class="area <%= area.proposed_date.present? ? '': 'bg-info' %>"
-              data-id="<%= area.id %>"
-              data-proposed-date="<%= area.proposed_date %>"
-              data-cost="<%= area.total %>"
-          >
-            <%= link_to area.name, trip_area_path(@trip, area) %>
-          </div>
-        <% end %>
-      </div>
-
-      <div>
-        <strong>Total:</strong>
-        <%= @trip.total.format %>
-      </div>
-
-      <%= link_to 'Add Area', new_trip_area_path(@trip) %> |
-      <%= link_to 'Edit', edit_trip_path(@trip) %> |
-      <%= link_to 'Back', trips_path %>
+      <% end %>
     </div>
-    <div class="col-md-9">
-      <div id='calendar' data-start-date="<%= @trip.start_date %>"></div>
+
+    <div>
+      <strong>Total:</strong>
+      <%= @trip.total.format %>
     </div>
+
+    <%= link_to 'Add Area', new_trip_area_path(@trip) %> |
+    <%= link_to 'Edit', edit_trip_path(@trip) %> |
+    <%= link_to 'Back', trips_path %>
+  </div>
+  <div class="col-md-9">
+    <div id='calendar' data-start-date="<%= @trip.start_date %>"></div>
   </div>
 </div>
-
-<footer class="pagefooter">© <a href="https://twitter.com/asellitt">@asellitt</a></footer>
