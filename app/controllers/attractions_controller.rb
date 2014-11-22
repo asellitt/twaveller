@@ -1,5 +1,4 @@
 class AttractionsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_attraction, only: [:show, :edit, :update, :destroy]
   before_action :set_area
   before_action :set_trip
