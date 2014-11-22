@@ -1,4 +1,5 @@
 class AreasController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_area, only: [:show, :edit, :update, :destroy]
   before_action :set_trip
 
