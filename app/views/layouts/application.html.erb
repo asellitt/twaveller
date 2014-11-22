@@ -1,14 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Twaveller</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title><%= @navigation_presenter.application_name %></title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to @navigation_presenter.application_name, root_path, class: 'navbar-brand' %>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <% if @navigation_presenter.user_signed_in? %>
+            <ul class="nav navbar-nav">
+              <%= yield :actions %>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="navbar-text">Welcome <%= @navigation_presenter.username %></li>
+              <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+            </ul>
+          <% else %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to 'Sign In', new_user_session_path %></li>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </nav>
 
-<%= yield %>
+    <div class="container-fluid">
 
-</body>
+      <% if @trip.present? %>
+        <%= render 'common/header' %>
+      <% end %>
+
+      <% if notice.present? %>
+        <div class="row">
+          <p id="notice" class="bg-info"><%= notice %></p>
+        </div>
+      <% end %>
+      <% if alert.present? %>
+        <div class="row">
+          <p id="alert" class="bg-danger"><%= alert %></p>
+        </div>
+      <% end %>
+
+      <%= yield %>
+
+    </div>
+
+    <footer class="pagefooter">© <a href="https://twitter.com/asellitt">@asellitt</a></footer>
+  </body>
 </html>

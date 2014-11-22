@@ -12,6 +12,7 @@ gem 'money'
 gem 'encapsulate_as_money'
 gem 'bower-rails'
 gem 'rails_12factor'
+gem 'devise'
 
 group :development do
   gem 'better_errors'
