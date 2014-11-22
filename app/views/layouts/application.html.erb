@@ -23,7 +23,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="navbar-text">Welcome <%= @navigation_presenter.username %></li>
-              <li><%= link_to 'Log out', destroy_user_session_path %></li>
+              <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
             </ul>
           <% else %>
             <ul class="nav navbar-nav navbar-right">
@@ -37,7 +37,9 @@
 
     <div class="container-fluid">
 
-      <%= render 'common/header' %>
+      <% if @trip.present? %>
+        <%= render 'common/header' %>
+      <% end %>
 
       <% if notice.present? %>
         <div class="row">
