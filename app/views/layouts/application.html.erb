@@ -10,16 +10,12 @@
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-            <%= @navigation_presenter.application_name %>
-          </a>
+          <%= link_to @navigation_presenter.application_name, root_path, class: 'navbar-brand' %>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <% if @navigation_presenter.user_signed_in? %>
             <ul class="nav navbar-nav">
-              <li><a href="#">Put</a></li>
-              <li><a href="#">Actions</a></li>
-              <li><a href="#">Here</a></li>
+              <%= yield :actions %>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="navbar-text">Welcome <%= @navigation_presenter.username %></li>

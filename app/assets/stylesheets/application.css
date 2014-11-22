@@ -17,6 +17,9 @@
  *= require_self
  */
 
+.navbar {
+  margin: 0px;
+}
 
 #trip.jumbotron {
  background-size: cover;
