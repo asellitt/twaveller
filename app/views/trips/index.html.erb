@@ -1,3 +1,7 @@
+<%= content_for :actions do %>
+  <li><%= link_to 'New Trip', new_trip_path %></li>
+<% end %>
+
 <h1>Listing trips</h1>
 
 <table>
@@ -19,7 +23,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Trip', new_trip_path %>

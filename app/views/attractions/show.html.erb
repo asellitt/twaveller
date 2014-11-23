@@ -1,54 +1,40 @@
-<div class="container-fluid">
-  <%= render 'common/header' %>
+<%= content_for :actions do %>
+  <li><%= link_to 'Add Attraction', new_trip_area_attraction_path(@trip, @area) %></li>
+  <li><%= link_to 'Edit', edit_trip_area_attraction_path(@trip, @area, @attraction) %></li>
+  <li><%= link_to 'Back', trip_area_path(@trip, @area) %></li>
+<% end %>
 
-  <% if notice.present? %>
-    <div class="row">
-      <p id="notice" class="bg-info"><%= notice %></p>
-    </div>
-  <% end %>
-
-  <div class="row">
-    <div class="col-md-12">
-      <%= render 'attractions/attraction', attraction: @attraction %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <p>
-        <strong>Name:</strong>
-        <%= @attraction.name %>
-      </p>
-
-      <p>
-        <strong>Description:</strong>
-        <%= @attraction.description %>
-      </p>
-
-      <p>
-        <strong>Cost:</strong>
-        <%= @attraction.cost %>
-      </p>
-
-      <p>
-        <strong>Image:</strong>
-        <%= @attraction.image %>
-      </p>
-
-      <p>
-        <strong>Link:</strong>
-        <%= @attraction.link %>
-      </p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <%= link_to 'Add Attraction', new_trip_area_attraction_path(@trip, @area) %> |
-      <%= link_to 'Edit', edit_trip_area_attraction_path(@trip, @area, @attraction) %> |
-      <%= link_to 'Back', trip_area_path(@trip, @area) %>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'attractions/attraction', attraction: @attraction %>
   </div>
 </div>
 
-<footer class="pagefooter">© <a href="https://twitter.com/asellitt">@asellitt</a></footer>
+<div class="row">
+  <div class="col-md-12">
+    <p>
+      <strong>Name:</strong>
+      <%= @attraction.name %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @attraction.description %>
+    </p>
+
+    <p>
+      <strong>Cost:</strong>
+      <%= @attraction.cost %>
+    </p>
+
+    <p>
+      <strong>Image:</strong>
+      <%= @attraction.image %>
+    </p>
+
+    <p>
+      <strong>Link:</strong>
+      <%= @attraction.link %>
+    </p>
+  </div>
+</div>

@@ -1,5 +1,7 @@
+<%= content_for :actions do %>
+  <li><%= link_to 'Back', trips_path %></li>
+<% end %>
+
 <h1>New trip</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', trips_path %>

@@ -1,3 +1,7 @@
+<%= content_for :actions do %>
+  <li><%= link_to 'New Attraction', new_trip_area_attraction_path(@trip, @area) %></li>
+<% end %>
+
 <h1>Listing attractions</h1>
 
 <table>
@@ -29,7 +33,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Attraction', new_trip_area_attraction_path(@trip, @area) %>

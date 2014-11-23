@@ -1,56 +1,42 @@
-<div class="container-fluid">
-  <%= render 'common/header' %>
+<%= content_for :actions do %>
+  <li><%= link_to 'Add Attraction', new_trip_area_attraction_path(@trip, @area) %></li>
+  <li><%= link_to 'Edit', edit_trip_area_path(@trip, @area) %></li>
+  <li><%= link_to 'Back', trip_path(@trip) %></li>
+<% end %>
 
-  <% if notice.present? %>
-    <div class="row">
-      <p id="notice" class="bg-info"><%= notice %></p>
-    </div>
-  <% end %>
-
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <h3><%= @presenter.name %> <small><%= @presenter.proposed_date %></small></h3>
-    </div>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h3><%= @presenter.name %> <small><%= @presenter.proposed_date %></small></h3>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="row thumbnail area-thumbnail">
-        <div class="col-md-6">
-          <%= image_tag @presenter.image, class: 'area-image' %>
-        </div>
-        <div class="col-md-6">
-          <blockquote class="text-left">
-            <p>
-              <%= @presenter.description %>
-            </p>
-
-            <footer>
-              <strong>Total:</strong>
-              <%= @presenter.total %>
-            </footer>
-          </blockquote>
-        </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="row thumbnail area-thumbnail">
+      <div class="col-md-6">
+        <%= image_tag @presenter.image, class: 'area-image' %>
       </div>
-    </div>
-  </div>
+      <div class="col-md-6">
+        <blockquote class="text-left">
+          <p>
+            <%= @presenter.description %>
+          </p>
 
-  <% @presenter.attractions.in_groups_of(3, false) do |group| %>
-    <div class="row">
-      <% group.each do |attraction| %>
-        <div class="col-xs-4 col-md-4">
-          <%= render 'attractions/attraction', attraction: attraction %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
-  <div class="row">
-    <div class="col-md-12">
-      <%= link_to 'Add Attraction', new_trip_area_attraction_path(@trip, @area) %> |
-      <%= link_to 'Edit', edit_trip_area_path(@trip, @area) %> |
-      <%= link_to 'Back', trip_path(@trip) %>
+          <footer>
+            <strong>Total:</strong>
+            <%= @presenter.total %>
+          </footer>
+        </blockquote>
+      </div>
     </div>
   </div>
 </div>
 
-<footer class="pagefooter">© <a href="https://twitter.com/asellitt">@asellitt</a></footer>
+<% @presenter.attractions.in_groups_of(3, false) do |group| %>
+  <div class="row">
+    <% group.each do |attraction| %>
+      <div class="col-xs-4 col-md-4">
+        <%= render 'attractions/attraction', attraction: attraction %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
