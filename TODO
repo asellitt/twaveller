@@ -1,8 +1,7 @@
 TODO:
 - get trips by name (in url)
 - support fixed days for areas
-- add a nav bar
-- add logins
-- put the jumbotron on ALL the pages
-- put the footer on ALL the pages
 - support for local currencies (add currency to trip)
+- TripRights table, (user_id, trip_id, permission)
+  - permission can be :owner, :editor, :viewer
+  - how to say publicly viewable? :public ?
