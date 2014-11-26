@@ -20,8 +20,6 @@ class TripsController < ApplicationController
   end
 
   def first_or_new
-    raise User::NotAuthorized unless user_can_view_trip?
-
     trip = Trip.first
     if trip.present?
       redirect_to :action => 'show', :id => trip.id

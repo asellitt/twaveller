@@ -13,8 +13,8 @@
   <tbody>
     <% @trip_rights.each do |trip_right| %>
       <tr>
-        <td><%= trip_right.trip %></td>
-        <td><%= trip_right.user %></td>
+        <td><%= trip_right.trip_id %></td>
+        <td><%= trip_right.user_id %></td>
         <td><%= trip_right.permission %></td>
         <td><%= link_to 'Show', trip_right %></td>
         <td><%= link_to 'Edit', edit_trip_right_path(trip_right) %></td>
