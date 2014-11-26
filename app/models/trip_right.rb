@@ -1,4 +1,5 @@
 class TripRight < ActiveRecord::Base
+  validates_inclusion_of :permission, in: [:owner, :collaborator, :viewer], allow_nil: false
 
   def self.user_can_edit?(user_id: user_id, trip_id: trip_id)
     right = where(user_id: user_id, trip_id: trip_id).first
