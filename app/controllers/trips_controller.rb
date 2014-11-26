@@ -11,6 +11,7 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
+    raise User::NotAuthorized unless user_can_view_trip?
   end
 
   # GET /trips/new
@@ -19,6 +20,8 @@ class TripsController < ApplicationController
   end
 
   def first_or_new
+    raise User::NotAuthorized unless user_can_view_trip?
+
     trip = Trip.first
     if trip.present?
       redirect_to :action => 'show', :id => trip.id
@@ -29,20 +32,23 @@ class TripsController < ApplicationController
 
   # GET /trips/1/edit
   def edit
+    raise User::NotAuthorized unless user_can_edit_trip?
   end
 
   # POST /trips
   # POST /trips.json
   def create
-    @trip = Trip.new(trip_params)
-
-    respond_to do |format|
-      if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render :show, status: :created, location: @trip }
-      else
-        format.html { render :new }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
+    Trip.transaction do
+      @trip = Trip.new(trip_params)
+      respond_to do |format|
+        if @trip.save
+          TripRight.create!(user_id: current_user.id, trip_id: @trip.id, permission: :owner)
+          format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+          format.json { render :show, status: :created, location: @trip }
+        else
+          format.html { render :new }
+          format.json { render json: @trip.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -50,6 +56,8 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
   def update
+    raise User::NotAuthorized unless user_can_edit_trip?
+
     respond_to do |format|
       if @trip.update(trip_params)
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
@@ -64,6 +72,8 @@ class TripsController < ApplicationController
   # DELETE /trips/1
   # DELETE /trips/1.json
   def destroy
+    raise User::NotAuthorized unless user_can_edit_trip?
+
     @trip.destroy
     respond_to do |format|
       format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
@@ -80,5 +90,13 @@ private
   # Never trust parameters from the scary internet, only allow the white list through.
   def trip_params
     params.require(:trip).permit(:name, :banner_image, :start_date, :end_date)
+  end
+
+  def user_can_edit_trip?
+    TripRight.user_can_edit?(user_id: current_user.id, trip_id: @trip.id)
+  end
+
+  def user_can_view_trip?
+    TripRight.user_can_view?(user_id: current_user.id, trip_id: @trip.id)
   end
 end

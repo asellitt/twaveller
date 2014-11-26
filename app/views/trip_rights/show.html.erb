@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Trip:</strong>
+  <%= @trip_right.trip %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @trip_right.user %>
+</p>
+
+<p>
+  <strong>Permission:</strong>
+  <%= @trip_right.permission %>
+</p>
+
+<%= link_to 'Edit', edit_trip_right_path(@trip_right) %> |
+<%= link_to 'Back', trip_rights_path %>

@@ -6,7 +6,17 @@ class ApplicationController < ActionController::Base
   before_action :load_navigation_presenter
   before_action :authenticate_user!, except: [:show]
 
+  rescue_from User::NotAuthorized, with: :user_not_authorized
+
   def load_navigation_presenter
     @navigation_presenter = NavigationPresenter.new(current_user, user_signed_in?)
   end
+
+private
+
+  def user_not_authorized
+    flash[:error] = 'These are not the droids you are looking for'
+    redirect_to :back
+  end
+
 end

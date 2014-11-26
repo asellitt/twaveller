@@ -23,6 +23,7 @@ end
 group :development, :test do
   gem 'jazz_hands'
   gem 'pry-byebug'
+  gem 'rspec-rails'
 end
 
 ruby "2.0.0"

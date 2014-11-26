@@ -33,7 +33,7 @@
 
     <div class="container-fluid">
 
-      <% if @trip.present? %>
+      <% if @trip.present? && @trip.persisted? %>
         <div class="row">
           <div
               id="trip"
@@ -58,6 +58,9 @@
         <div class="row">
           <p id="alert" class="bg-danger"><%= alert %></p>
         </div>
+      <% end %>
+      <% flash.each do |key, value| %>
+        <%= content_tag :div, value, class: "flash #{key}" %>
       <% end %>
 
       <%= yield %>

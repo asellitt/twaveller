@@ -1,0 +1,2 @@
+module TripRightsHelper
+end

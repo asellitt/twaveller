@@ -6,26 +6,34 @@ class AttractionsController < ApplicationController
   # GET /attractions
   # GET /attractions.json
   def index
+    raise User::NotAuthorized unless user_can_view_attraction?
+
     @attractions = @area.attractions.all
   end
 
   # GET /attractions/1
   # GET /attractions/1.json
   def show
+    raise User::NotAuthorized unless user_can_view_attraction?
   end
 
   # GET /attractions/new
   def new
+    raise User::NotAuthorized unless user_can_edit_attraction?
+
     @attraction = Attraction.new
   end
 
   # GET /attractions/1/edit
   def edit
+    raise User::NotAuthorized unless user_can_edit_attraction?
   end
 
   # POST /attractions
   # POST /attractions.json
   def create
+    raise User::NotAuthorized unless user_can_edit_attraction?
+
     @attraction = @area.attractions.new(converted_attraction_params)
 
     respond_to do |format|
@@ -42,6 +50,8 @@ class AttractionsController < ApplicationController
   # PATCH/PUT /attractions/1
   # PATCH/PUT /attractions/1.json
   def update
+    raise User::NotAuthorized unless user_can_edit_attraction?
+
     respond_to do |format|
       if @attraction.update(converted_attraction_params)
         format.html { redirect_to [@trip, @area, @attraction], notice: 'Attraction was successfully updated.' }
@@ -56,6 +66,8 @@ class AttractionsController < ApplicationController
   # DELETE /attractions/1
   # DELETE /attractions/1.json
   def destroy
+    raise User::NotAuthorized unless user_can_edit_attraction?
+
     @attraction.destroy
     respond_to do |format|
       format.html { redirect_to trip_area_attractions_path(@trip, @area), notice: 'Attraction was successfully destroyed.' }
@@ -88,6 +100,14 @@ private
     attraction_params.tap do |params|
       params[:cost] = Money.new( (params[:cost].to_f * 100).to_i )
     end
+  end
+
+  def user_can_edit_attraction?
+    TripRight.user_can_edit?(user_id: current_user.id, trip_id: @trip.id)
+  end
+
+  def user_can_view_attraction?
+    TripRight.user_can_view?(user_id: current_user.id, trip_id: @trip.id)
   end
 
 end

@@ -8,4 +8,6 @@ Rails.application.routes.draw do
       resources :attractions
     end
   end
+
+  resources :trip_rights
 end

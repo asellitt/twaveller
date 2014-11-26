@@ -5,27 +5,36 @@ class AreasController < ApplicationController
   # GET /areas
   # GET /areas.json
   def index
+    raise User::NotAuthorized unless user_can_view_area?
+
     @areas = @trip.areas.all
   end
 
   # GET /areas/1
   # GET /areas/1.json
   def show
+    raise User::NotAuthorized unless user_can_view_area?
+
     @presenter = AreaPresenter.new(@area)
   end
 
   # GET /areas/new
   def new
+    raise User::NotAuthorized unless user_can_edit_area?
+
     @area = Area.new
   end
 
   # GET /areas/1/edit
   def edit
+    raise User::NotAuthorized unless user_can_edit_area?
   end
 
   # POST /areas
   # POST /areas.json
   def create
+    raise User::NotAuthorized unless user_can_edit_area?
+
     @area = @trip.areas.new(area_params)
 
     respond_to do |format|
@@ -42,6 +51,8 @@ class AreasController < ApplicationController
   # PATCH/PUT /areas/1
   # PATCH/PUT /areas/1.json
   def update
+    raise User::NotAuthorized unless user_can_edit_area?
+
     respond_to do |format|
       if @area.update(area_params)
         format.html { redirect_to [@trip, @area], notice: 'Area was successfully updated.' }
@@ -56,6 +67,8 @@ class AreasController < ApplicationController
   # DELETE /areas/1
   # DELETE /areas/1.json
   def destroy
+    raise User::NotAuthorized unless user_can_edit_area?
+
     @area.destroy
     respond_to do |format|
       format.html { redirect_to trip_areas_path(@trip), notice: 'Area was successfully destroyed.' }
@@ -77,6 +90,14 @@ private
   # Never trust parameters from the scary internet, only allow the white list through.
   def area_params
     params.require(:area).permit(:trip_id, :name, :description, :cost, :image, :proposed_date)
+  end
+
+  def user_can_edit_area?
+    TripRight.user_can_edit?(user_id: current_user.id, trip_id: @trip.id)
+  end
+
+  def user_can_view_area?
+    TripRight.user_can_view?(user_id: current_user.id, trip_id: @trip.id)
   end
 
 end
