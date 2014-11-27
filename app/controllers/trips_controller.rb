@@ -91,10 +91,10 @@ private
   end
 
   def user_can_edit_trip?
-    TripRight.user_can_edit?(user_id: current_user.id, trip_id: @trip.id)
+    current_user.present? && TripRight.user_can_edit?(user_id: current_user.id, trip_id: @trip.id)
   end
 
   def user_can_view_trip?
-    TripRight.user_can_view?(user_id: current_user.id, trip_id: @trip.id)
+    current_user.present? && TripRight.user_can_view?(user_id: current_user.id, trip_id: @trip.id)
   end
 end

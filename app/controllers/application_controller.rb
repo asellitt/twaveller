@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :load_navigation_presenter
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!
 
   rescue_from User::NotAuthorized, with: :user_not_authorized
 
@@ -16,7 +16,11 @@ private
 
   def user_not_authorized
     flash[:error] = 'These are not the droids you are looking for'
-    redirect_to :back
+    if request.env['HTTP_REFERER']
+      redirect_to :back
+    else
+      redirect_to trips_path
+    end
   end
 
 end
