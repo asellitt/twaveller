@@ -15,11 +15,10 @@ class ApplicationController < ActionController::Base
 private
 
   def user_not_authorized
-    flash[:error] = 'These are not the droids you are looking for'
     if request.env['HTTP_REFERER']
-      redirect_to :back
+      redirect_to :back, alert: 'These are not the droids you are looking for'
     else
-      redirect_to trips_path
+      redirect_to trips_path, alert: 'These are not the droids you are looking for'
     end
   end
 
