@@ -37,8 +37,9 @@ initializeAreas = ->
 
 initializeHeader = ->
   console.log('>>>trip#initializeHeader')
-  tripBackground = $('.jumbotron').attr('data-background')
-  $('.jumbotron').css('background-image', "url(#{tripBackground})")
+  $('.jumbotron').each (index, element) =>
+    tripBackground = $(element).attr('data-background')
+    $(element).css('background-image', "url(#{tripBackground})")
   console.log('<<<trip#initializeHeader')
 
 

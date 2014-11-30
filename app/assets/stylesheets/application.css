@@ -21,7 +21,7 @@
   margin: 0px;
 }
 
-#trip.jumbotron {
+.jumbotron {
  background-size: cover;
  background-position: center;
  border-radius: 0px;
