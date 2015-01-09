@@ -35,7 +35,7 @@ class AreasController < ApplicationController
   def create
     raise User::NotAuthorized unless user_can_edit_area?
 
-    @area = @trip.areas.new(area_params)
+    @area = Area.new(area_params.merge(trip_id: @trip.id))
 
     respond_to do |format|
       if @area.save
@@ -89,7 +89,7 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def area_params
-    params.require(:area).permit(:trip_id, :name, :description, :cost, :image, :proposed_date)
+    params.require(:area).permit(:trip_id, :name, :description, :image, :proposed_date)
   end
 
   def user_can_edit_area?
