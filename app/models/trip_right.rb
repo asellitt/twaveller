@@ -12,7 +12,7 @@ class TripRight < ActiveRecord::Base
   end
 
   def permission
-    super.to_sym
+    super.to_sym if super.present?
   end
 
   def permission=(perm)

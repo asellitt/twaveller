@@ -13,12 +13,12 @@
   <tbody>
     <% @trip_rights.each do |trip_right| %>
       <tr>
-        <td><%= trip_right.trip_id %></td>
-        <td><%= trip_right.user_id %></td>
+        <td><%= trip_right.trip_name %></td>
+        <td><%= trip_right.user_email %></td>
         <td><%= trip_right.permission %></td>
-        <td><%= link_to 'Show', trip_right %></td>
-        <td><%= link_to 'Edit', edit_trip_right_path(trip_right) %></td>
-        <td><%= link_to 'Destroy', trip_right, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', trip_right.view_path %></td>
+        <td><%= link_to 'Edit', trip_right.edit_path %></td>
+        <td><%= link_to 'Destroy', trip_right.view_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
