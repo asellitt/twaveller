@@ -5,7 +5,7 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
+    @trips = Trip.all.collect { |trip| TripPresenter.new(trip, current_user.id) }
   end
 
   # GET /trips/1
