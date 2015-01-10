@@ -1,4 +1,9 @@
-<h1>Listing trip_rights</h1>
+<%= content_for :actions do %>
+  <li><%= link_to 'New permission', new_trip_trip_right_path %></li>
+  <li><%= link_to 'Back', trip_path(@trip) %></li>
+<% end %>
+
+<h1>Listing permissions</h1>
 
 <table>
   <thead>
@@ -26,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Trip right', new_trip_trip_right_path %>
+
