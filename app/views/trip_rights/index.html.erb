@@ -5,23 +5,20 @@
 
 <h1>Listing permissions</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Trip</th>
       <th>User</th>
       <th>Permission</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @trip_rights.each do |trip_right| %>
-      <tr>
-        <td><%= trip_right.trip_name %></td>
-        <td><%= trip_right.user_email %></td>
-        <td><%= trip_right.permission %></td>
-        <td><%= link_to 'Show', trip_right.view_path %></td>
+      <tr class="clickable-row" data-url="<%= trip_right.view_path %>">
+        <td><%= link_to trip_right.user_email, trip_right.view_path %></td>
+        <td><%= link_to trip_right.permission, trip_right.view_path %></td>
         <td><%= link_to 'Edit', trip_right.edit_path %></td>
         <td><%= link_to 'Destroy', trip_right.view_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

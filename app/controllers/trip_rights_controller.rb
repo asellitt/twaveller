@@ -5,7 +5,7 @@ class TripRightsController < ApplicationController
   respond_to :html
 
   def index
-    @trip_rights = TripRight.all.collect{ |right| TripRightPresenter.new(right) }
+    @trip_rights = TripRight.where(trip_id: @trip.id).collect{ |right| TripRightPresenter.new(right) }
   end
 
   def show
@@ -21,13 +21,17 @@ class TripRightsController < ApplicationController
   end
 
   def create
-    @trip_right = TripRight.new(trip_right_params)
+    @trip_right = TripRight.new(trip_right_params.merge(trip_id: @trip.id))
     respond_to do |format|
       begin
-        trip = Trip.find(@trip_right.trip_id)
         user = User.find(@trip_right.user_id)
         if @trip_right.save
-          format.html { redirect_to trip, notice: "#{user.email} is now a #{@trip_right.permission} of #{trip.name}." }
+          format.html do
+            redirect_to(
+              trip_trip_rights_path(@trip),
+              notice: "#{user.email} is now a #{@trip_right.permission} of #{@trip.name}."
+            )
+          end
           format.json { render :show, status: :created, location: trip }
         else
           format.html { render :new }
@@ -36,8 +40,8 @@ class TripRightsController < ApplicationController
       rescue ActiveRecord::RecordNotUnique => exception
         format.html do
           redirect_to(
-            new_trip_trip_right_path(trip_right: { trip_id: trip.id }),
-            alert: "#{user.email} is already a #{@trip_right.permission} of #{trip.name}.",
+            new_trip_trip_right_path(@trip),
+            alert: "#{user.email} is already a #{@trip_right.permission} of #{@trip.name}.",
           )
         end
       end
@@ -50,8 +54,15 @@ class TripRightsController < ApplicationController
   end
 
   def destroy
-    @trip_right.destroy
-    respond_with(@trip, @trip_right)
+    if @trip_right.permission == :owner
+        redirect_to(
+          trip_trip_rights_path(@trip),
+          alert: "This guy owns the trip, McNugget",
+        ) and return
+    else
+      @trip_right.destroy
+      respond_with(@trip, @trip_right)
+    end
   end
 
 private
@@ -68,4 +79,5 @@ private
   def trip_right_params
     params.require(:trip_right).permit(:trip_id, :user_id, :permission)
   end
+
 end

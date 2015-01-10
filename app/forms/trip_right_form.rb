@@ -11,7 +11,7 @@ class TripRightForm
   end
 
   def permissions
-    { owner: :owner, collaborator: :collaborator, viewer: :viewer }
+    { viewer: :viewer, collaborator: :collaborator }
   end
 
 private
