@@ -9,6 +9,20 @@ describe TripRight do
     )
   end
 
+  describe '#can_grant?' do
+    subject(:can_grant?) { trip_right.can_grant? }
+    [
+      { permission: :owner, result: true },
+      { permission: :collaborator, result: false },
+      { permission: :viewer, result: false },
+    ].each do |testcase|
+      context "given the user has #{testcase[:permission]} rights" do
+        let(:permission) { testcase[:permission] }
+        it { is_expected.to eq(testcase[:result]) }
+      end
+    end
+  end
+
   describe '#can_edit?' do
     subject(:can_edit?) { trip_right.can_edit? }
     [

@@ -16,9 +16,9 @@
 
   <tbody>
     <% @trip_rights.each do |trip_right| %>
-      <tr class="clickable-row" data-url="<%= trip_right.view_path %>">
-        <td><%= link_to trip_right.user_email, trip_right.view_path %></td>
-        <td><%= link_to trip_right.permission, trip_right.view_path %></td>
+      <tr>
+        <td class="clickable-cell" data-url="<%= trip_right.view_path %>"><%= link_to trip_right.user_email, trip_right.view_path %></td>
+        <td class="clickable-cell" data-url="<%= trip_right.view_path %>"><%= link_to trip_right.permission, trip_right.view_path %></td>
         <td><%= link_to 'Edit', trip_right.edit_path %></td>
         <td><%= link_to 'Destroy', trip_right.view_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

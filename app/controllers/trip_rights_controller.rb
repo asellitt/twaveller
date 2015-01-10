@@ -12,15 +12,21 @@ class TripRightsController < ApplicationController
   end
 
   def new
+    raise User::NotAuthorized unless user_can_grant_rights?
+
     @trip_right = TripRight.new(trip_id: @trip.id)
     @form = TripRightForm.new(@trip_right)
   end
 
   def edit
+    raise User::NotAuthorized unless user_can_grant_rights?
+
     @form = TripRightForm.new(@trip_right)
   end
 
   def create
+    raise User::NotAuthorized unless user_can_grant_rights?
+
     @trip_right = TripRight.new(trip_right_params.merge(trip_id: @trip.id))
     respond_to do |format|
       begin
@@ -49,11 +55,15 @@ class TripRightsController < ApplicationController
   end
 
   def update
+    raise User::NotAuthorized unless user_can_grant_rights?
+
     @trip_right.update(trip_right_params)
     respond_with(@trip, @trip_right)
   end
 
   def destroy
+    raise User::NotAuthorized unless user_can_grant_rights?
+
     if @trip_right.permission == :owner
         redirect_to(
           trip_trip_rights_path(@trip),
@@ -78,6 +88,10 @@ private
 
   def trip_right_params
     params.require(:trip_right).permit(:trip_id, :user_id, :permission)
+  end
+
+  def user_can_grant_rights?
+    current_user.present? && TripRight.user_can_view?(user_id: current_user.id, trip_id: @trip.id)
   end
 
 end

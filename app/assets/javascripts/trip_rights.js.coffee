@@ -9,7 +9,8 @@ ready = ->
 
 initializeRows = ->
   console.log('>>>trip_rights#initializeRows')
-  $('.clickable-row').click ->
+  $('.clickable-cell').click (event)->
+    event.preventDefault()
     url = $(this).attr('data-url')
     window.document.location = url
   console.log('<<<trip_rights#initializeRows')
