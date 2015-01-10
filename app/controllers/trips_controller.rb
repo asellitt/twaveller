@@ -19,15 +19,6 @@ class TripsController < ApplicationController
     @trip = Trip.new
   end
 
-  def first_or_new
-    trip = Trip.first
-    if trip.present?
-      redirect_to :action => 'show', :id => trip.id
-    else
-      redirect_to :action => 'new'
-    end
-  end
-
   # GET /trips/1/edit
   def edit
     raise User::NotAuthorized unless user_can_edit_trip?

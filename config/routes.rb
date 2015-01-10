@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'trips#first_or_new'
+  root 'trips#index'
 
   devise_for :users
 
