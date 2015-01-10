@@ -1,5 +1,9 @@
-<h1>New trip_right</h1>
+<%= content_for :actions do %>
+  <li><%= link_to 'Back', trip_trip_rights_path %></li>
+<% end %>
+
+<h1>New permission</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', trip_rights_path %>
+

@@ -1,6 +1,9 @@
-<h1>Editing trip_right</h1>
+<%= content_for :actions do %>
+  <li><%= link_to 'Show', [@trip, @trip_right] %></li>
+  <li><%= link_to 'Back', trip_trip_rights_path %></li>
+  <li><%= link_to 'Delete', [@trip, @trip_right], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+<% end %>
+<h1>Editing permission</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @trip_right %> |
-<%= link_to 'Back', trip_rights_path %>

@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     resources :areas do
       resources :attractions
     end
+
+    resources :trip_rights
   end
 
-  resources :trip_rights
 end

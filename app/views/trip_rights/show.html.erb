@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :actions do %>
+  <li><%= link_to 'Edit', edit_trip_trip_right_path(@trip, @trip_right) %></li>
+  <li><%= link_to 'Back', trip_trip_rights_path(@trip) %></li>
+<% end %>
 
 <p>
   <strong>Trip Id:</strong>
@@ -15,5 +18,5 @@
   <%= @trip_right.permission %>
 </p>
 
-<%= link_to 'Edit', edit_trip_right_path(@trip_right) %> |
-<%= link_to 'Back', trip_rights_path %>
+<%= link_to 'Edit', edit_trip_trip_right_path(@trip, @trip_right) %> |
+<%= link_to 'Back', trip_trip_rights_path(@trip) %>
