@@ -42,8 +42,10 @@
               data-background="<%= @trip.banner_image %>"
           >
             <div class="container">
-              <h1><%= @trip.name %></h1>
-              <p> (<%= @trip.start_date.to_date %> - <%= @trip.end_date.to_date %>)</p>
+              <div class="jumbotron-heading">
+                <h1><%= @trip.name %></h1>
+                <p> (<%= @trip.start_date.to_date %> - <%= @trip.end_date.to_date %>)</p>
+              </div>
             </div>
           </div>
         </div>

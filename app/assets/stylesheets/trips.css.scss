@@ -21,3 +21,15 @@ div.fc-content-skeleton {
   border-radius: 5px;
   border: 1px solid #000;
 }
+
+a.jumbo {
+  color: #000000;
+  &:visited {
+    color: #000000;
+  }
+  &:hover {
+    color: #000000;
+    background-color: transparent;
+  }
+}
+
