@@ -9,11 +9,11 @@ class TripRightPresenter
   end
 
   def view_path
-    @view_path ||= router.trip_right_path(trip_right)
+    @view_path ||= router.trip_trip_right_path(trip, trip_right)
   end
 
   def edit_path
-    @edit_path ||= router.edit_trip_right_path(trip_right)
+    @edit_path ||= router.edit_trip_trip_right_path(trip, trip_right)
   end
 
 private
