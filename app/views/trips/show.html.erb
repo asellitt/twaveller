@@ -42,6 +42,16 @@
           </div>
         <% else %>
           <div class="col-md-12">
+            <% @trip.areas.each do |area| %>
+              <div
+                  class="hidden area <%= area.proposed_date.present? ? '': 'bg-info' %>"
+                  data-id="<%= area.id %>"
+                  data-proposed-date="<%= area.proposed_date %>"
+                  data-cost="<%= area.total.format %>"
+              >
+                <%= link_to area.name, trip_area_path(@trip.id, area) %>
+              </div>
+            <% end %>
             <div
                 id='calendar'
                 data-start-date="<%= @trip.start_date %>"
