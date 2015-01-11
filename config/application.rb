@@ -21,6 +21,5 @@ module Twaveller
     # config.i18n.default_locale = :de
 
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
-    ActiveRecord::Base.extend(EncapsulateAsMoney)
   end
 end

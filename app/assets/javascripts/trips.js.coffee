@@ -48,7 +48,7 @@ convertAreasToEvents = ->
   events = [];
   for area in $('.area[data-proposed-date!=""]')
     events.push
-      title: "#{$(area).text()}$#{$(area).attr('data-cost')}"
+      title: "#{$(area).text()}#{$(area).attr('data-cost')}"
       ,start: $(area).attr('data-proposed-date')
       ,allDay: true
       ,area_id: $(area).attr('data-id')

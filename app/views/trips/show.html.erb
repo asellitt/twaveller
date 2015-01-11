@@ -17,7 +17,7 @@
             class="area <%= area.proposed_date.present? ? '': 'bg-info' %>"
             data-id="<%= area.id %>"
             data-proposed-date="<%= area.proposed_date %>"
-            data-cost="<%= area.total %>"
+            data-cost="<%= area.total.format %>"
         >
           <%= link_to area.name, trip_area_path(@trip, area) %>
         </div>

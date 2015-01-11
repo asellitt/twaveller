@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :cost %><br>
-    <%= f.text_field :cost, :value => number_with_precision(@attraction.cost, :precision => 2) %>
+    <%= f.number_field :cost, value: number_with_precision(@attraction.cost, precision: 2), step: 'any' %>
   </div>
   <div class="field">
     <%= f.label :image %><br>
