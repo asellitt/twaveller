@@ -89,7 +89,12 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def area_params
-    params.require(:area).permit(:trip_id, :name, :description, :image, :proposed_date)
+    params.
+      require(:area).
+      permit(:trip_id, :name, :description, :image, :proposed_date).
+      tap do |params|
+        params[:currency_code] = @trip.currency_code
+      end
   end
 
   def user_can_edit_area?
