@@ -12,6 +12,8 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     raise User::NotAuthorized unless user_can_view_trip?
+
+    @trip = TripPresenter.new(@trip, current_user)
   end
 
   # GET /trips/new

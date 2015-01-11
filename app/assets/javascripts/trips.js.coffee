@@ -13,11 +13,12 @@ initializeCalendar = ->
   console.log('>>>trip#initializeCalendar')
   calendar = $('#calendar')
   startDate = calendar.attr('data-start-date')
+  editable = calendar.attr('data-editable')
   calendar.fullCalendar(
     defaultDate: startDate
-    ,droppable: true
+    ,droppable: editable
     ,drop: dropAreaOnCalendar
-    ,editable: true
+    ,editable: editable
     ,eventClick: clickEventOnCalendar
     ,header:
       left: 'prev'

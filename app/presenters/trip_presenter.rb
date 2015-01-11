@@ -1,6 +1,6 @@
 class TripPresenter
 
-  delegate :banner_image, :name, to: :trip
+  delegate :id, :banner_image, :name, :areas, :total, :map, :persisted?, to: :trip
 
   def initialize(trip, current_user_id)
     @trip = trip

@@ -15,32 +15,41 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="calendar-panel">
       <div class="row">
-        <div class="col-md-3">
-          <div>
-            <div class="text-center">
-              <h3>Areas</h3>
-            </div>
-            <% @trip.areas.each do |area| %>
-              <div
-                  class="area <%= area.proposed_date.present? ? '': 'bg-info' %>"
-                  data-id="<%= area.id %>"
-                  data-proposed-date="<%= area.proposed_date %>"
-                  data-cost="<%= area.total.format %>"
-              >
-                <%= link_to area.name, trip_area_path(@trip, area) %>
+        <% if @trip.editable? %>
+          <div class="col-md-3">
+            <div>
+              <div class="text-center">
+                <h3>Areas</h3>
               </div>
-            <% end %>
+              <% @trip.areas.each do |area| %>
+                <div
+                    class="area <%= area.proposed_date.present? ? '': 'bg-info' %>"
+                    data-id="<%= area.id %>"
+                    data-proposed-date="<%= area.proposed_date %>"
+                    data-cost="<%= area.total.format %>"
+                >
+                  <%= link_to area.name, trip_area_path(@trip, area) %>
+                </div>
+              <% end %>
+            </div>
           </div>
-
-          <div>
-            <strong>Total:</strong>
-            <%= @trip.total.format %>
+          <div class="col-md-9">
+            <div
+                id='calendar'
+                data-start-date="<%= @trip.start_date %>"
+                data-editable="true"
+            ></div>
           </div>
-        </div>
+        <% else %>
+          <div class="col-md-12">
+            <div
+                id='calendar'
+                data-start-date="<%= @trip.start_date %>"
+                data-editable="false"
+            ></div>
+          </div>
+        <% end %>
 
-        <div class="col-md-9">
-          <div id='calendar' data-start-date="<%= @trip.start_date %>"></div>
-        </div>
       </div>
     </div>
 
@@ -56,5 +65,13 @@
       </div>
     </div>
   </div>
+</div>
 
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1>
+      <strong>Total:</strong>
+      <%= @trip.total.format %>
+    </h1>
+  </div>
 </div>
