@@ -1,6 +1,6 @@
 <%= content_for :actions do %>
-  <li><%= link_to 'Edit', edit_trip_trip_right_path(@trip, @trip_right) %></li>
-  <li><%= link_to 'Back', trip_trip_rights_path(@trip) %></li>
+  <li><%= link_to 'Edit', edit_trip_trip_right_path(@trip.id, @trip_right.id) %></li>
+  <li><%= link_to 'Back', trip_trip_rights_path(@trip.id) %></li>
 <% end %>
 
 <p>
@@ -18,5 +18,5 @@
   <%= @trip_right.permission %>
 </p>
 
-<%= link_to 'Edit', edit_trip_trip_right_path(@trip, @trip_right) %> |
-<%= link_to 'Back', trip_trip_rights_path(@trip) %>
+<%= link_to 'Edit', edit_trip_trip_right_path(@trip.id, @trip_right.id) %> |
+<%= link_to 'Back', trip_trip_rights_path(@trip.id) %>

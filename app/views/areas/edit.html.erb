@@ -1,6 +1,6 @@
 <%= content_for :actions do %>
-  <li><%= link_to 'Show', trip_areas_path(@trip, @area) %></li>
-  <li><%= link_to 'Back', trip_path(@trip) %></li>
+  <li><%= link_to 'Show', trip_areas_path(@trip.id, @area.id) %></li>
+  <li><%= link_to 'Back', trip_path(@trip.id) %></li>
 <% end %>
 
 <h1>Editing area</h1>

@@ -1,6 +1,6 @@
 <%= content_for :actions do %>
-  <li><%= link_to 'Show', trip_area_attractions_path(@trip, @area, @attraction) %></li>
-  <li><%= link_to 'Back', trip_area_path(@trip, @area) %></li>
+  <li><%= link_to 'Show', trip_area_attractions_path(@trip.id, @area.id, @attraction.id) %></li>
+  <li><%= link_to 'Back', trip_area_path(@trip.id, @area.id) %></li>
 <% end %>
 
 <h1>Editing attraction</h1>

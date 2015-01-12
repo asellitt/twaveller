@@ -1,5 +1,5 @@
 <%= content_for :actions do %>
-  <li><%= link_to 'New Attraction', new_trip_area_attraction_path(@trip, @area) %></li>
+  <li><%= link_to 'New Attraction', new_trip_area_attraction_path(@trip.id, @area.id) %></li>
 <% end %>
 
 <h1>Listing attractions</h1>
@@ -26,9 +26,9 @@
         <td><%= attraction.cost %></td>
         <td><%= attraction.image %></td>
         <td><%= attraction.link %></td>
-        <td><%= link_to 'Show', trip_area_attraction+path(@trip, @area, attraction) %></td>
-        <td><%= link_to 'Edit', edit_trip_area_attraction_path(@trip, @area, attraction) %></td>
-        <td><%= link_to 'Destroy', [@trip, @area, attraction], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', trip_area_attraction_path(@trip.id, @area.id, attraction.id) %></td>
+        <td><%= link_to 'Edit', edit_trip_area_attraction_path(@trip.id, @area.id, attraction.id) %></td>
+        <td><%= link_to 'Destroy', [@trip.id, @area.id, attraction.id], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

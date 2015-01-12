@@ -1,7 +1,7 @@
 <%= content_for :actions do %>
-  <li><%= link_to 'Show', [@trip, @trip_right] %></li>
+  <li><%= link_to 'Show', [@trip.id, @trip_right.id] %></li>
   <li><%= link_to 'Back', trip_trip_rights_path %></li>
-  <li><%= link_to 'Delete', [@trip, @trip_right], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  <li><%= link_to 'Delete', [@trip.id, @trip_right.id], method: :delete, data: { confirm: 'Are you sure?' } %></li>
 <% end %>
 <h1>Editing permission</h1>
 
