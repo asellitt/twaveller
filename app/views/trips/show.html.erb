@@ -28,7 +28,7 @@
                     data-proposed-date="<%= area.proposed_date %>"
                     data-cost="<%= area.total.format %>"
                 >
-                  <%= link_to area.name, trip_area_path(@trip, area) %>
+                  <%= link_to area.name, trip_area_path(@trip.id, area) %>
                 </div>
               <% end %>
             </div>
