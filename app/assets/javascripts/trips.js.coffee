@@ -24,7 +24,7 @@ initializeCalendar = ->
       left: 'prev'
       ,center: 'title'
       ,right: 'next'
-    ,events: convertAreasToEvents()
+    ,eventSources: convertAreasToEventSources()
     ,eventDrop: moveEventAroundCalendar
   )
   console.log('<<<trip#initializeCalendar')
@@ -43,17 +43,34 @@ initializeHeader = ->
     $(element).css('background-image', "url(#{tripBackground})")
   console.log('<<<trip#initializeHeader')
 
+convertAreasToEventSources = ->
+  console.log('>>>trip#convertAreasToEventSources')
+  colorPalette = [
+    { tour: 0, color: '#FF6F6B', textColor: '#3D0200' }
+    ,{ tour: 1, color: '#5BDA63', textColor: '#003003' }
+    ,{ tour: 2, color: '#7A62C9', textColor: '#0C032A' }
+    ,{ tour: 3, color: '#FFE66B', textColor: '#3D3200' }
+  ]
+  eventsource = []
+  for color in colorPalette
+    areas = $(".area[data-proposed-date!=''][data-tour='#{color.tour}']")
+    eventsource.push
+      events: convertAreasToEvents(areas)
+      ,color: color.color
+      ,textColor: color.textColor
+  console.log('<<<trip#convertAreasToEventSources')
+  eventsource
 
-convertAreasToEvents = ->
-  console.log('>>>trip#loadEvents')
-  events = [];
-  for area in $('.area[data-proposed-date!=""]')
+convertAreasToEvents = (areas) ->
+  console.log('>>>trip#convertAreasToEvents')
+  events = []
+  for area in areas
     events.push
       title: "#{$(area).text()}#{$(area).attr('data-cost')}"
       ,start: $(area).attr('data-proposed-date')
       ,allDay: true
       ,area_id: $(area).attr('data-id')
-  console.log('<<<trip#loadEvents')
+  console.log('<<<trip#convertAreasToEvents')
   events
 
 

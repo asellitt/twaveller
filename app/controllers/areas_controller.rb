@@ -91,7 +91,7 @@ private
   def area_params
     params.
       require(:area).
-      permit(:trip_id, :name, :description, :image, :proposed_date).
+      permit(:trip_id, :name, :description, :image, :proposed_date, :tour).
       tap do |params|
         params[:currency_code] = @trip.currency_code
       end
