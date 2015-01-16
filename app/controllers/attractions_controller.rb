@@ -9,12 +9,16 @@ class AttractionsController < ApplicationController
     raise User::NotAuthorized unless user_can_view_attraction?
 
     @attractions = @area.attractions.all
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # GET /attractions/1
   # GET /attractions/1.json
   def show
     raise User::NotAuthorized unless user_can_view_attraction?
+
+    @banner = BannerPresenter.new(@trip, current_user)
+    @polaroid = Polaroid::AttractionPresenter.new(@attraction, @area, @trip, full_width: true)
   end
 
   # GET /attractions/new
@@ -22,11 +26,14 @@ class AttractionsController < ApplicationController
     raise User::NotAuthorized unless user_can_edit_attraction?
 
     @attraction = Attraction.new
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # GET /attractions/1/edit
   def edit
     raise User::NotAuthorized unless user_can_edit_attraction?
+
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # POST /attractions

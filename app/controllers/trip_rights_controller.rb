@@ -6,9 +6,11 @@ class TripRightsController < ApplicationController
 
   def index
     @trip_rights = TripRight.where(trip_id: @trip.id).collect{ |right| TripRightPresenter.new(right) }
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   def show
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   def new
@@ -16,12 +18,14 @@ class TripRightsController < ApplicationController
 
     @trip_right = TripRight.new(trip_id: @trip.id)
     @form = TripRightForm.new(@trip_right)
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   def edit
     raise User::NotAuthorized unless user_can_grant_rights?
 
     @form = TripRightForm.new(@trip_right)
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   def create

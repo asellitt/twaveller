@@ -38,7 +38,7 @@
                   data-cost="<%= area.total.format %>"
                   data-tour="<%= area.tour %>"
               >
-                <%= link_to area.name, trip_area_path(@presenter.id, area) %>
+                <%= link_to area.name, trip_area_path(@trip, area) %>
               </div>
             <% end %>
           </div>
@@ -46,6 +46,7 @@
         <div class="<%= @presenter.calendar_column_class %>">
           <div
               id='calendar'
+              data-id="<%= @presenter.id %>"
               data-start-date="<%= @presenter.start_date %>"
               data-editable="true"
           ></div>

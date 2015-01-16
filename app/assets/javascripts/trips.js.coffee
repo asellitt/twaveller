@@ -120,7 +120,7 @@ revertDraggedArea = (event, ui) ->
 
 updateAreasProposedDate = (area_id, date, title, element) ->
   console.log('>>>trip#update')
-  trip_id = $('#trip').attr('data-id')
+  trip_id = $('#calendar').attr('data-id')
   url = "/trips/#{trip_id}/areas/#{area_id}"
   $.ajax({
     type: 'PUT'

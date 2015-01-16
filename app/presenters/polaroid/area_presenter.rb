@@ -12,6 +12,10 @@ class Polaroid::AreaPresenter
     area_presenter.total
   end
 
+  def column_class
+    'col-md-4'
+  end
+
   def view_path
     router.trip_area_path(trip, area)
   end

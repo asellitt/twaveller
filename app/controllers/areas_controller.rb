@@ -8,6 +8,7 @@ class AreasController < ApplicationController
     raise User::NotAuthorized unless user_can_view_area?
 
     @areas = @trip.areas.all
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # GET /areas/1
@@ -16,6 +17,7 @@ class AreasController < ApplicationController
     raise User::NotAuthorized unless user_can_view_area?
 
     @presenter = AreaPresenter.new(@area)
+    @banner = BannerPresenter.new(@trip, current_user)
     @polaroids = @area.attractions.collect { |attraction| Polaroid::AttractionPresenter.new(attraction, @area, @trip) }
   end
 
@@ -24,11 +26,14 @@ class AreasController < ApplicationController
     raise User::NotAuthorized unless user_can_edit_area?
 
     @area = Area.new
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # GET /areas/1/edit
   def edit
     raise User::NotAuthorized unless user_can_edit_area?
+
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # POST /areas

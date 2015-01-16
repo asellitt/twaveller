@@ -5,7 +5,8 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all.collect { |trip| TripPresenter.new(trip, current_user.id) }
+    @banners = Trip.all.collect { |trip| BannerPresenter.new(trip, current_user.id, show_controls: true) }
+
   end
 
   # GET /trips/1
@@ -14,17 +15,22 @@ class TripsController < ApplicationController
     raise User::NotAuthorized unless user_can_view_trip?
 
     @presenter = TripPresenter.new(@trip, current_user)
+    @banner = BannerPresenter.new(@trip, current_user)
     @polaroids = @trip.areas.collect { |area| Polaroid::AreaPresenter.new(area, @trip) }
+
   end
 
   # GET /trips/new
   def new
     @trip = Trip.new
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # GET /trips/1/edit
   def edit
     raise User::NotAuthorized unless user_can_edit_trip?
+
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # POST /trips
