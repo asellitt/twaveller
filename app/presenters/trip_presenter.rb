@@ -1,6 +1,6 @@
 class TripPresenter
 
-  delegate :id, :banner_image, :name, :areas, :total, :map, :persisted?, to: :trip
+  delegate :id, :banner_image, :name, :areas, :map, :persisted?, to: :trip
 
   def initialize(trip, current_user_id)
     @trip = trip
@@ -13,6 +13,18 @@ class TripPresenter
 
   def end_date
     @end_date ||= trip.end_date.strftime('%e %B %Y')
+  end
+
+  def total
+    @total ||= trip.total.format
+  end
+
+  def area_visibility_class
+    'hidden' unless editable?
+  end
+
+  def calendar_column_class
+    editable? ? 'col-md-9' : 'col-md-12'
   end
 
   def editable?

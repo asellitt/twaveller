@@ -4,17 +4,7 @@
 
 ready = ->
   console.log('>>>area#ready')
-  initializeAreas()
   console.log('<<<area#ready')
-
-initializeAreas = ->
-  console.log('>>>area#initializeHeader')
-  $('.attraction-image').each( (index) ->
-    background = $(this).attr('data-background')
-    $(this).css('background-image', "url(#{background})")
-    $(this).css('background-position', "center")
-  )
-  console.log('<<<area#initializeHeader')
 
 
 $(document).ready(ready)

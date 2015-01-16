@@ -13,7 +13,8 @@ class TripsController < ApplicationController
   def show
     raise User::NotAuthorized unless user_can_view_trip?
 
-    @trip = TripPresenter.new(@trip, current_user)
+    @presenter = TripPresenter.new(@trip, current_user)
+    @polaroids = @trip.areas.collect { |area| Polaroid::AreaPresenter.new(area, @trip) }
   end
 
   # GET /trips/new

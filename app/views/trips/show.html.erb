@@ -1,67 +1,55 @@
 <%= content_for :actions do %>
-  <li><%= link_to 'Share Trip', trip_trip_rights_path(@trip.id) %></li>
-  <li><%= link_to 'Add Area', new_trip_area_path(@trip.id) %></li>
-  <li><%= link_to 'Edit', edit_trip_path(@trip.id) %></li>
+  <li><%= link_to 'Share Trip', trip_trip_rights_path(@trip) %></li>
+  <li><%= link_to 'Add Area', new_trip_area_path(@trip) %></li>
+  <li><%= link_to 'Edit', edit_trip_path(@trip) %></li>
   <li><%= link_to 'Back', trips_path %></li>
 <% end %>
 
 <div role="tabpanel">
 
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#calendar-panel" aria-controls="calendar-panel" role="tab" data-toggle="tab">Calendar</a></li>
+    <li role="presentation" class="active"><a href="#area-panel" aria-controls="area-panel" role="tab" data-toggle="tab">Areas</a></li>
+    <li role="presentation"><a href="#calendar-panel" aria-controls="calendar-panel" role="tab" data-toggle="tab">Calendar</a></li>
     <li role="presentation"><a href="#map-panel" aria-controls="map-panel" role="tab" data-toggle="tab">Map</a></li>
   </ul>
 
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="calendar-panel">
+    <div role="tabpanel" class="tab-pane active" id="area-panel">
+      <% @polaroids.in_groups_of(3, false) do |group| %>
+        <div class="row">
+          <% group.each do |polaroid| %>
+            <%= render 'partials/polaroid', polaroid: polaroid %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="calendar-panel">
       <div class="row">
-        <% if @trip.editable? %>
-          <div class="col-md-3">
-            <div>
-              <div class="text-center">
-                <h3>Areas</h3>
-              </div>
-              <% @trip.areas.each do |area| %>
-                <div
-                    class="area <%= area.proposed_date.present? ? '': 'bg-info' %>"
-                    data-id="<%= area.id %>"
-                    data-proposed-date="<%= area.proposed_date %>"
-                    data-cost="<%= area.total.format %>"
-                    data-tour="<%= area.tour %>"
-                >
-                  <%= link_to area.name, trip_area_path(@trip.id, area) %>
-                </div>
-              <% end %>
+        <div class="col-md-3 <%= @presenter.area_visibility_class %> ">
+          <div>
+            <div class="text-center">
+              <h3>Areas</h3>
             </div>
-          </div>
-          <div class="col-md-9">
-            <div
-                id='calendar'
-                data-start-date="<%= @trip.start_date %>"
-                data-editable="true"
-            ></div>
-          </div>
-        <% else %>
-          <div class="col-md-12">
-            <% @trip.areas.each do |area| %>
+            <% @presenter.areas.each do |area| %>
               <div
-                  class="hidden area <%= area.proposed_date.present? ? '': 'bg-info' %>"
+                  class="area <%= area.proposed_date.present? ? '': 'bg-info' %>"
                   data-id="<%= area.id %>"
                   data-proposed-date="<%= area.proposed_date %>"
                   data-cost="<%= area.total.format %>"
                   data-tour="<%= area.tour %>"
               >
-                <%= link_to area.name, trip_area_path(@trip.id, area) %>
+                <%= link_to area.name, trip_area_path(@presenter.id, area) %>
               </div>
             <% end %>
-            <div
-                id='calendar'
-                data-start-date="<%= @trip.start_date %>"
-                data-editable="false"
-            ></div>
           </div>
-        <% end %>
-
+        </div>
+        <div class="<%= @presenter.calendar_column_class %>">
+          <div
+              id='calendar'
+              data-start-date="<%= @presenter.start_date %>"
+              data-editable="true"
+          ></div>
+        </div>
       </div>
     </div>
 
@@ -69,7 +57,7 @@
       <div class="row">
         <div class="col-md-12">
           <iframe
-              src="<%= @trip.map %>"
+              src="<%= @presenter.map %>"
               width="100%"
               height="700"
           ></iframe>
@@ -83,7 +71,7 @@
   <div class="col-md-12 text-center">
     <h1>
       <strong>Total:</strong>
-      <%= @trip.total.format %>
+      <%= @presenter.total %>
     </h1>
   </div>
 </div>

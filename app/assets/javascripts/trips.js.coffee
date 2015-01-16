@@ -27,6 +27,10 @@ initializeCalendar = ->
     ,eventSources: convertAreasToEventSources()
     ,eventDrop: moveEventAroundCalendar
   )
+
+  $("a[data-toggle='tab']").on "shown.bs.tab", ->
+    calendar.fullCalendar('render')
+
   console.log('<<<trip#initializeCalendar')
 
 

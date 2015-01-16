@@ -16,6 +16,7 @@ class AreasController < ApplicationController
     raise User::NotAuthorized unless user_can_view_area?
 
     @presenter = AreaPresenter.new(@area)
+    @polaroids = @area.attractions.collect { |attraction| Polaroid::AttractionPresenter.new(attraction, @area, @trip) }
   end
 
   # GET /areas/new
