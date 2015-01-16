@@ -1,11 +1,15 @@
 class Polaroid::AttractionPresenter
 
-  delegate :image, :name, :description, :cost, to: :attraction
+  delegate :image, :name, :description, to: :attraction
 
   def initialize(attraction, area, trip)
     @attraction = attraction
     @area = area
     @trip = trip
+  end
+
+  def cost
+    @cost ||= attraction.cost.format
   end
 
   def view_path
