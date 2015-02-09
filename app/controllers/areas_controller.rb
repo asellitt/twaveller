@@ -77,7 +77,7 @@ class AreasController < ApplicationController
 
     @area.destroy
     respond_to do |format|
-      format.html { redirect_to trip_areas_path(@trip), notice: 'Area was successfully destroyed.' }
+      format.html { redirect_to trip_path(@trip), notice: 'Area was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

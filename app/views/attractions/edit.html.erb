@@ -1,5 +1,6 @@
 <%= content_for :actions do %>
   <li><%= link_to 'Show', trip_area_attractions_path(@trip.id, @area.id, @attraction.id) %></li>
+  <li><%= link_to 'Delete', trip_area_attraction_path(@trip.id, @area.id, @attraction.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
   <li><%= link_to 'Back', trip_area_path(@trip.id, @area.id) %></li>
 <% end %>
 

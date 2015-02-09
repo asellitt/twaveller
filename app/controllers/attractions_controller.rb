@@ -77,7 +77,7 @@ class AttractionsController < ApplicationController
 
     @attraction.destroy
     respond_to do |format|
-      format.html { redirect_to trip_area_attractions_path(@trip, @area), notice: 'Attraction was successfully destroyed.' }
+      format.html { redirect_to trip_area_path(@trip, @area), notice: 'Attraction was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
