@@ -25,7 +25,7 @@ class AttractionsController < ApplicationController
   def new
     raise User::NotAuthorized unless user_can_edit_attraction?
 
-    @attraction = Attraction.new
+    @attraction = Attraction.new(area: @area)
     @banner = BannerPresenter.new(@trip, current_user)
   end
 
@@ -41,7 +41,7 @@ class AttractionsController < ApplicationController
   def create
     raise User::NotAuthorized unless user_can_edit_attraction?
 
-    @attraction = @area.attractions.new(attraction_params)
+    @attraction = @area.attractions.new({area: @area}.merge(attraction_params))
 
     respond_to do |format|
       if @attraction.save
@@ -101,10 +101,9 @@ private
   def attraction_params
     params.
       require(:attraction).
-      permit(:area_id, :name, :description, :cost, :image, :link, :currency_code).
+      permit(:area_id, :name, :description, :cost, :image, :link).
       tap do |params|
         params[:cost] = BigDecimal.new(params[:cost])
-        params[:currency_code] = @area.currency_code
       end
   end
 
