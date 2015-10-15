@@ -15,7 +15,6 @@ class TripsController < ApplicationController
     raise User::NotAuthorized unless user_can_view_trip?
 
     @presenter = TripPresenter.new(@trip, current_user)
-    @banner = BannerPresenter.new(@trip, current_user)
     @polaroids = @trip.areas.collect { |area| Polaroid::AreaPresenter.new(area, @trip) }
 
   end
@@ -23,14 +22,12 @@ class TripsController < ApplicationController
   # GET /trips/new
   def new
     @trip = Trip.new
-    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # GET /trips/1/edit
   def edit
     raise User::NotAuthorized unless user_can_edit_trip?
 
-    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # POST /trips
@@ -83,6 +80,7 @@ private
   # Use callbacks to share common setup or constraints between actions.
   def set_trip
     @trip = Trip.find(params[:id])
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

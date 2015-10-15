@@ -8,7 +8,6 @@ class AreasController < ApplicationController
     raise User::NotAuthorized unless user_can_view_area?
 
     @areas = @trip.areas.all
-    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # GET /areas/1
@@ -17,7 +16,6 @@ class AreasController < ApplicationController
     raise User::NotAuthorized unless user_can_view_area?
 
     @presenter = AreaPresenter.new(@area)
-    @banner = BannerPresenter.new(@trip, current_user)
     @polaroids = @area.attractions.collect { |attraction| Polaroid::AttractionPresenter.new(attraction, @area, @trip) }
   end
 
@@ -26,14 +24,11 @@ class AreasController < ApplicationController
     raise User::NotAuthorized unless user_can_edit_area?
 
     @area = Area.new
-    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # GET /areas/1/edit
   def edit
     raise User::NotAuthorized unless user_can_edit_area?
-
-    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   # POST /areas
@@ -87,6 +82,7 @@ private
   # Use callbacks to share common setup or constraints between actions.
   def set_trip
     @trip = Trip.find(params[:trip_id])
+    @banner = BannerPresenter.new(@trip, current_user)
   end
 
   def set_area
@@ -97,10 +93,7 @@ private
   def area_params
     params.
       require(:area).
-      permit(:trip_id, :name, :description, :image, :proposed_date, :tour).
-      tap do |params|
-        params[:currency_code] = @trip.currency_code
-      end
+      permit(:trip_id, :name, :description, :image, :proposed_date, :tour, :currency_code)
   end
 
   def user_can_edit_area?
