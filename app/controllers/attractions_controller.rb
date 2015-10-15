@@ -101,10 +101,10 @@ private
   def attraction_params
     params.
       require(:attraction).
-      permit(:area_id, :name, :description, :cost, :image, :link).
+      permit(:area_id, :name, :description, :cost, :image, :link, :currency_code).
       tap do |params|
         params[:cost] = BigDecimal.new(params[:cost])
-        params[:currency_code] = @trip.currency_code
+        params[:currency_code] = @area.currency_code
       end
   end
 
