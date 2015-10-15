@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114100548) do
+ActiveRecord::Schema.define(version: 20151015112102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20150114100548) do
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "currency_code", default: "aud"
   end
 
   add_index "attractions", ["area_id"], name: "index_attractions_on_area_id", using: :btree
