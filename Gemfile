@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'money'
+gem 'google_currency'
 gem 'bower-rails'
 gem 'rails_12factor'
 gem 'devise'
@@ -20,9 +21,11 @@ group :development do
 end
 
 group :development, :test do
-  gem 'jazz_hands'
+  gem 'pry'
   gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
   gem 'rspec-rails'
 end
 
-ruby "2.0.0"
+ruby "2.2.0"
