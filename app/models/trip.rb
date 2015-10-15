@@ -4,6 +4,6 @@ class Trip < ActiveRecord::Base
   validates_with CurrencyCodeValidator
 
   def total
-    areas.collect(&:total).sum.exchange_to(currency_code)
+    Money.new(areas.collect(&:total).sum).exchange_to(currency_code)
   end
 end

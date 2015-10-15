@@ -3,6 +3,6 @@ class Area < ActiveRecord::Base
   validates_with CurrencyCodeValidator
 
   def total
-    attractions.collect(&:cost).sum.exchange_to(currency_code)
+    Money.new(attractions.collect(&:cost).sum).exchange_to(currency_code)
   end
 end
