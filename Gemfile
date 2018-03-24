@@ -9,7 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'money'
-gem 'google_currency'
+gem 'money-open-exchange-rates'
 gem 'bower-rails'
 gem 'rails_12factor'
 gem 'devise'
@@ -21,8 +21,8 @@ group :development do
 end
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'pry'
-  # gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
   gem 'rspec-rails'

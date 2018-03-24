@@ -1,12 +1,17 @@
 require 'money'
-require 'money/bank/google_currency'
+require 'money/bank/open_exchange_rates_bank'
 
-# set the seconds after than the current rates are automatically expired
-# by default, they never expire
-Money::Bank::GoogleCurrency.ttl_in_seconds = 86400
+oxr = Money::Bank::OpenExchangeRatesBank.new
+oxr.cache = 'cache.json'
+oxr.app_id = ENV["OPENEXCHANGERATES_APP_ID"]
+oxr.update_rates
+oxr.ttl_in_seconds = 86400
 
-# set default bank to instance of GoogleCurrency
-Money.default_bank = Money::Bank::GoogleCurrency.new
+# the thing that uses the quota
+oxr.save_rates
+
+Money.default_bank = oxr
+Money.default_bank.get_rate('USD', 'AUD')
 
 # default format
 Money.default_formatting_rules = {
